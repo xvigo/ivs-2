@@ -29,3 +29,10 @@ def factorial(number):
         number -= 1
         result *= number
     return result
+
+def power(base, exponent):
+    return pow(base, exponent)
+
+def square_root(degree, radicand):
+    root = pow(radicand, 1/degree)
+    return root
