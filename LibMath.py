@@ -12,4 +12,20 @@ def multiplication(factor1, factor2):
   
 # Function to divide two numbers 
 def division(dividend, divisor): 
+    if divisor == 0:
+        raise Exception("Zero division error")
     return dividend / divisor
+
+# Factorial
+def factorial(number):
+    if not isinstance(number, int) or number < 0:
+        raise Exception("Negative or non-integer factorial error")
+
+    if number == 0:
+        return 1
+
+    result = number
+    while number != 1:
+        number -= 1
+        result *= number
+    return result
