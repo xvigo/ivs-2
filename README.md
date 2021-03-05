@@ -1,11 +1,11 @@
 # IVS project 2
 ## Platform
-* Linux
+Linux
 
-##Authors
-* Pavel Mare
+# #Authors
+* Pavel Marek
 * Štěpán Bílek
 * Vilém Gottwald
 
-## Licence
+## License
 This project is licensed under the terms of the [GNU GPL v3](./LICENSE.md).
