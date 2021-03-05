@@ -2,7 +2,7 @@
 ## Platform
 Linux
 
-# #Authors
+## Authors
 * Pavel Marek
 * Štěpán Bílek
 * Vilém Gottwald
