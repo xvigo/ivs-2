@@ -1,6 +1,6 @@
 # IVS project 2
 ## Platform
-Linux
+Ubuntu 20.04 - 64bit
 
 ## Authors
 * xmarek75 Pavel Marek
