@@ -3,63 +3,63 @@
 # @package gapalib
 # Gapalib is mathematical library for GazorPazorp calculator.
 #
-# This math library contains basic mathematical function. 
+# This math library contains basic mathematical function.
 #
 
 
 ##
 # @brief Function to add two numbers
-# 
+#
 # @param add1 First addend
-# @param add2 Second addend   
+# @param add2 Second addend
 #
 # @return Sum of add1 and add2
 @staticmethod
-def add(add1, add2): 
-    return add1 + add2 
+def add(add1, add2):
+    return add1 + add2
 
-##  
+##
 # @brief Function to substract one number from another
-# 
+#
 # @param minuend Number we substract from
-# @param subtrahend Number we substract 
+# @param subtrahend Number we substract
 #
 # @return difference of minuend and subtrahend
 @staticmethod
-def sub(minuend, subtrahend): 
-    return minuend - subtrahend 
+def sub(minuend, subtrahend):
+    return minuend - subtrahend
 
-##  
+##
 # @brief Function to multiply two numbers
-#    
+#
 # @param a First number to be multiplied
 # @param b Second number to be multiplied
 #
 # @return Product of a and b
-@staticmethod 
-def mul(a, b): 
-    return a * b    
+@staticmethod
+def mul(a, b):
+    return a * b
 
-##  
-# @brief Function to divide two numbers 
-#    
+##
+# @brief Function to divide two numbers
+#
 # @param a Dividend
 # @param b Divisor
 #
 # @return Quotient of two numbers
-@staticmethod 
-def div(a, b): 
+@staticmethod
+def div(a, b):
     if b == 0:
         raise Exception("Error - dividing by zero")
     return a / b
 
-##  
+##
 # @brief Function to compute factorial
-#    
+#
 # @param a Number, factorial will be computed from
 #
-# @return Factorial of given number 
-@staticmethod 
+# @return Factorial of given number
+@staticmethod
 def factorial(a):
     if not isinstance(a, int) or a < 0:
         raise Exception("Error - number is not int or < 0")
@@ -73,25 +73,25 @@ def factorial(a):
         result *= a
     return result
 
-##  
+##
 # @brief Function to compute power
-#    
+#
 # @param a Base (number)
 # @param exp Exponent
 #
-# @return power 
-@staticmethod 
+# @return power
+@staticmethod
 def power(a, exp):
     return pow(a, exp)
 
-##  
+##
 # @brief Function to compute root
-#    
+#
 # @param deegree Root degree
 # @param radicand Root radicand
 #
-# @return power 
-@staticmethod 
+# @return power
+@staticmethod
 def root(degree, radicand):
     root = pow(radicand, 1/degree)
     return root
