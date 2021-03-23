@@ -1,5 +1,6 @@
 #!/usr/bin/python
-##
+
+
 # @package gapalib
 # Gapalib is mathematical library for GazorPazorp calculator.
 #
@@ -50,7 +51,7 @@ def mul(a, b):
 @staticmethod
 def div(a, b):
     if b == 0:
-        raise Exception("Error - dividing by zero")
+        raise ZeroDivisionError("Error - dividing by zero")
     return a / b
 
 ##
@@ -62,8 +63,7 @@ def div(a, b):
 @staticmethod
 def factorial(a):
     if not isinstance(a, int) or a < 0:
-        raise Exception("Error - number is not int or < 0")
-
+        raise ValueError("Error - number isn't integer or is smaller than 0")
     if a == 0:
         return 1
 
@@ -93,5 +93,10 @@ def power(a, exp):
 # @return power
 @staticmethod
 def root(degree, radicand):
+    if degree % 2 == 1 and radicand < 0:
+        raise ValueError("Error - even root of a negative radicant")
+    if radicand == 0:
+        raise ValueError("Error - radicant can't be zero")
+
     root = pow(radicand, 1/degree)
     return root
