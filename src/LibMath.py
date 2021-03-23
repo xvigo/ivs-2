@@ -1,38 +1,97 @@
-# Function to add two numbers  
-def addition(addend1, addend2): 
-    return addend1 + addend2 
-  
-# Function to subtract two numbers  
-def subtraction(minuend, subtrahend): 
+#!/usr/bin/python
+##
+# @package gapalib
+# Gapalib is mathematical library for GazorPazorp calculator.
+#
+# This math library contains basic mathematical function. 
+#
+
+
+##
+# @brief Function to add two numbers
+# 
+# @param add1 First addend
+# @param add2 Second addend   
+#
+# @return Sum of add1 and add2
+@staticmethod
+def add(add1, add2): 
+    return add1 + add2 
+
+##  
+# @brief Function to substract one number from another
+# 
+# @param minuend Number we substract from
+# @param subtrahend Number we substract 
+#
+# @return difference of minuend and subtrahend
+@staticmethod
+def sub(minuend, subtrahend): 
     return minuend - subtrahend 
-  
-# Function to multiply two numbers 
-def multiplication(factor1, factor2): 
-    return factor1 * factor2 
-  
-# Function to divide two numbers 
-def division(dividend, divisor): 
-    if divisor == 0:
-        raise Exception("Zero division error")
-    return dividend / divisor
 
-# Factorial
-def factorial(number):
-    if not isinstance(number, int) or number < 0:
-        raise Exception("Negative or non-integer factorial error")
+##  
+# @brief Function to multiply two numbers
+#    
+# @param a First number to be multiplied
+# @param b Second number to be multiplied
+#
+# @return Product of a and b
+@staticmethod 
+def mul(a, b): 
+    return a * b    
 
-    if number == 0:
+##  
+# @brief Function to divide two numbers 
+#    
+# @param a Dividend
+# @param b Divisor
+#
+# @return Quotient of two numbers
+@staticmethod 
+def div(a, b): 
+    if b == 0:
+        raise Exception("Error - dividing by zero")
+    return a / b
+
+##  
+# @brief Function to compute factorial
+#    
+# @param a Number, factorial will be computed from
+#
+# @return Factorial of given number 
+@staticmethod 
+def factorial(a):
+    if not isinstance(a, int) or a < 0:
+        raise Exception("Error - number is not int or < 0")
+
+    if a == 0:
         return 1
 
-    result = number
-    while number != 1:
-        number -= 1
-        result *= number
+    result = a
+    while a != 1:
+        a -= 1
+        result *= a
     return result
 
-def power(base, exponent):
-    return pow(base, exponent)
+##  
+# @brief Function to compute power
+#    
+# @param a Base (number)
+# @param exp Exponent
+#
+# @return power 
+@staticmethod 
+def power(a, exp):
+    return pow(a, exp)
 
-def square_root(degree, radicand):
+##  
+# @brief Function to compute root
+#    
+# @param deegree Root degree
+# @param radicand Root radicand
+#
+# @return power 
+@staticmethod 
+def root(degree, radicand):
     root = pow(radicand, 1/degree)
     return root
