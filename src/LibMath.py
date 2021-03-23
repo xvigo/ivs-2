@@ -94,9 +94,9 @@ def power(a, exp):
 @staticmethod
 def root(degree, radicand):
     if degree % 2 == 1 and radicand < 0:
-        raise ValueError("Error - even root of a negative radicant")
+        raise ValueError("Error - even degree of a negative radicant")
     if radicand == 0:
-        raise ValueError("Error - radicant can't be zero")
+        raise ValueError("Error - degree can't be zero")
 
     root = pow(radicand, 1/degree)
     return root
