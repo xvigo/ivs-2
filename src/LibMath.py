@@ -1,6 +1,15 @@
 #!/usr/bin/python
+###################################################################
+# Project name: Gazorpazorp calculator
+# File: LibMath.py
+# Authors: Vilem Gottwald, Pavel Marek
+# Description: Library implementing basic mathematical operations
+###################################################################
 
 
+##
+# @file LibMath.py
+#
 # @package gapalib
 # Gapalib is mathematical library for GazorPazorp calculator.
 #
@@ -11,33 +20,30 @@
 ##
 # @brief Function to add two numbers
 #
-# @param add1 First addend
-# @param add2 Second addend
+# @param a First addend
+# @param b Second addend
 #
-# @return Sum of add1 and add2
-@staticmethod
-def add(add1, add2):
-    return add1 + add2
+# @return Sum of a and b
+def add(a, b):
+    return a + b
 
 ##
 # @brief Function to substract one number from another
 #
-# @param minuend Number we substract from
-# @param subtrahend Number we substract
+# @param a Minuend (number we substract from)
+# @param b Subtrahend (number we substract)
 #
-# @return difference of minuend and subtrahend
-@staticmethod
-def sub(minuend, subtrahend):
-    return minuend - subtrahend
+# @return Difference of a and b
+def sub(a, b):
+    return a - b
 
 ##
 # @brief Function to multiply two numbers
 #
-# @param a First number to be multiplied
-# @param b Second number to be multiplied
+# @param a First factor
+# @param b Second factor
 #
 # @return Product of a and b
-@staticmethod
 def mul(a, b):
     return a * b
 
@@ -47,8 +53,7 @@ def mul(a, b):
 # @param a Dividend
 # @param b Divisor
 #
-# @return Quotient of two numbers
-@staticmethod
+# @return Quotient of a and b
 def div(a, b):
     if b == 0:
         raise ZeroDivisionError("Error - dividing by zero")
@@ -60,8 +65,7 @@ def div(a, b):
 # @param a Number, factorial will be computed from
 #
 # @return Factorial of given number
-@staticmethod
-def factorial(a):
+def fact(a):
     if not isinstance(a, int) or a < 0:
         raise ValueError("Error - number isn't integer or is smaller than 0")
     if a == 0:
@@ -76,27 +80,30 @@ def factorial(a):
 ##
 # @brief Function to compute power
 #
-# @param a Base (number)
+# @param a Base
 # @param exp Exponent
 #
-# @return power
-@staticmethod
+# @return Result of the exponentiation
 def power(a, exp):
     return pow(a, exp)
 
 ##
 # @brief Function to compute root
 #
-# @param deegree Root degree
-# @param radicand Root radicand
+# @param a Radicand
+# @param deg Degree
 #
-# @return power
-@staticmethod
-def root(degree, radicand):
-    if degree % 2 == 1 and radicand < 0:
+# @return Result of the root
+def root(a, deg):
+    if deg % 2 == 0 and a < 0:
         raise ValueError("Error - even degree of a negative radicant")
-    if radicand == 0:
+    if deg == 0:
         raise ValueError("Error - degree can't be zero")
 
-    root = pow(radicand, 1/degree)
-    return root
+    negate = False
+    if a < 0 and deg % 2 == 1:
+        a = -a
+        negate = True
+
+    return -pow(a, 1/deg) if negate else -pow(a, 1/deg)
+
