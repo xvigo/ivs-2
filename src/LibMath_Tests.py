@@ -6,7 +6,7 @@
 # Date: 27. 3. 2020
 ###################################################################
 # Run the tests in directory src:
-# /src$ python3 LibMath_Tests.py
+# $ python3 LibMath_Tests.py
 #
 
 import unittest
@@ -241,7 +241,7 @@ class TestRoot(unittest.TestCase):
 
 
 
-
+# to simplify testing
 if __name__ == '__main__':
     unittest.main()
 
