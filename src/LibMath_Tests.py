@@ -171,7 +171,7 @@ class TestPower(unittest.TestCase):
         self.assertEqual(LibMath.power(0, 15), 0)
         self.assertEqual(LibMath.power(0, 22), 0)
 
-    def test_exponent_isnt_natural_number(self):
+    def test_power_exponent_isnt_natural_number(self):
         with self.assertRaises(ValueError):
             self.assertRaises(LibMath.power(0, 0))
         with self.assertRaises(ValueError):
@@ -207,7 +207,7 @@ class TestPower(unittest.TestCase):
 # Tests of function root
 class TestRoot(unittest.TestCase):
 
-    def test_degree_is_zero(self):
+    def test_root_degree_is_zero(self):
         with self.assertRaises(ValueError):
             self.assertRaises(LibMath.root(2, 0))
         with self.assertRaises(ValueError):
@@ -215,7 +215,7 @@ class TestRoot(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.assertRaises(LibMath.root(25.5, 0))
 
-    def test_even_degree_of_a_negative_radicant(self):
+    def test_root_even_degree_of_a_negative_radicant(self):
         with self.assertRaises(ValueError):
             self.assertRaises(LibMath.root(-5, 2))
         with self.assertRaises(ValueError):
@@ -225,25 +225,46 @@ class TestRoot(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.assertRaises(LibMath.root(-5, 10))
 
-    def test_int_positive(self):
+    def test_root_int_positive(self):
         self.assertEqual(LibMath.root(1, 5), 1)
         self.assertEqual(LibMath.root(155, 5), 2.741992987)
         self.assertEqual(LibMath.root(15, 1), 15)
         self.assertEqual(LibMath.root(0, 2), 0)
 
-    def test_float_positive(self):
+    def test_root_float_positive(self):
         self.assertEqual(LibMath.root(185.55, 2.33), 9.409973368)
         self.assertEqual(LibMath.root(0.2, 0.2), 0.00032)
 
-    def test_int_negative(self):
+    def test_root_int_negative(self):
         self.assertEqual(LibMath.root(-1, -5), -1)
         self.assertEqual(LibMath.root(16, -2), 0.25)
         self.assertEqual(LibMath.root(1, -5), 1)
         self.assertEqual(LibMath.root(2147483648, -31), 0.5)
 
-    def test_float_negative(self):
+    def test_root_float_negative(self):
         self.assertEqual(LibMath.root(0.2, -0.2), 3125)
         self.assertEqual(LibMath.root(-0.2, -0.2), -3125)
+
+
+# Tests of function abs
+class TestAbs(unittest.TestCase):
+
+    def test_abs_int_positive(self):
+        self.assertEqual(LibMath.abs(1), 1)
+        self.assertEqual(LibMath.abs(155), 155)
+
+    def test_abs_int_negative(self):
+        self.assertEqual(LibMath.abs(-1), 1)
+        self.assertEqual(LibMath.abs(-155), 155)
+
+    def test_abs_float_positive(self):
+        self.assertEqual(LibMath.abs(15.458), 15.458)
+
+    def test_abs_float_negative(self):
+        self.assertEqual(LibMath.abs(-15.458), 15.458)
+
+    def test_abs_zero(self):
+        self.assertEqual(LibMath.abs(0), 0)
 
 
 # to simplify testing
