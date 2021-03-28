@@ -85,7 +85,10 @@ def fact(a):
 #
 # @return Result of the exponentiation
 def power(a, exp):
-    return round(pow(a, exp), 6)
+    if not isinstance(exp, int) or exp <= 0:
+        raise ValueError("Error - exponent is not a natural number")
+
+    return round(pow(a,exp), 6)
 
 ##
 # @brief Function to compute root
