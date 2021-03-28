@@ -25,7 +25,7 @@
 #
 # @return Sum of a and b
 def add(a, b):
-    return a + b
+    return round(a + b, 6)
 
 ##
 # @brief Function to substract one number from another
@@ -35,7 +35,7 @@ def add(a, b):
 #
 # @return Difference of a and b
 def sub(a, b):
-    return a - b
+    return round(a - b, 6)
 
 ##
 # @brief Function to multiply two numbers
@@ -45,7 +45,7 @@ def sub(a, b):
 #
 # @return Product of a and b
 def mul(a, b):
-    return a * b
+    return round(a * b, 6)
 
 ##
 # @brief Function to divide two numbers
@@ -57,7 +57,7 @@ def mul(a, b):
 def div(a, b):
     if b == 0:
         raise ZeroDivisionError("Error - dividing by zero")
-    return a / b
+    return round(a / b, 6)
 
 ##
 # @brief Function to compute factorial
@@ -85,7 +85,7 @@ def fact(a):
 #
 # @return Result of the exponentiation
 def power(a, exp):
-    return pow(a, exp)
+    return round(pow(a, exp), 6)
 
 ##
 # @brief Function to compute root
@@ -105,5 +105,6 @@ def root(a, deg):
         a = -a
         negate = True
 
-    return -pow(a, 1/deg) if negate else -pow(a, 1/deg)
+    return round(-pow(a, 1/deg), 6) if negate else round(pow(a, 1/deg), 6)
 
+# End of file LibMath.py
