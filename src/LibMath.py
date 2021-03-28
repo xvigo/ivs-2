@@ -106,5 +106,16 @@ def root(a, deg):
         negate = True
 
     return round(-pow(a, 1/deg), 6) if negate else round(pow(a, 1/deg), 6)
+##
+# @brief Function to compute absolute value of a given number
+#
+# @param x Number, absolute value will be computed from
+#
+# @return Absolute Value of given number
+def abs(x):
+    if x >= 0:
+        return x
+    if x < 0:
+        return -x
 
 # End of file LibMath.py
