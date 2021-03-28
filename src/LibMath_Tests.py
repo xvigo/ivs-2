@@ -171,7 +171,7 @@ class TestPower(unittest.TestCase):
         self.assertEqual(LibMath.power(0, 15), 0)
         self.assertEqual(LibMath.power(0, 22), 0)
 
-    def test_power_exponent_isnt_natural_number(self):
+    def test_power_exponent_is_not_natural_number(self):
         with self.assertRaises(ValueError):
             self.assertRaises(LibMath.power(0, 0))
         with self.assertRaises(ValueError):
@@ -199,7 +199,7 @@ class TestPower(unittest.TestCase):
     def test_power_base_float_negative(self):
         self.assertEqual(LibMath.power(-2.5, 4), 39.0625)
         self.assertEqual(LibMath.power(-2.5, 5), -97.65625)
-        self.assertEqual(LibMath.power(-11.589, 3), -1556.459729)
+        self.assertAlmostEqual(LibMath.power(-11.589, 3), -1556.459729, 6) #almost equal
         self.assertEqual(LibMath.power(-11.2, 3), -1404.928)
         self.assertEqual(LibMath.power(-21.112, 5), -4194178.272)
 
@@ -227,12 +227,12 @@ class TestRoot(unittest.TestCase):
 
     def test_root_int_positive(self):
         self.assertEqual(LibMath.root(1, 5), 1)
-        self.assertEqual(LibMath.root(155, 5), 2.741992987)
+        self.assertAlmostEqual(LibMath.root(155, 5), 2.741992987, 6) #almost equal
         self.assertEqual(LibMath.root(15, 1), 15)
         self.assertEqual(LibMath.root(0, 2), 0)
 
     def test_root_float_positive(self):
-        self.assertEqual(LibMath.root(185.55, 2.33), 9.409973368)
+        self.assertAlmostEqual(LibMath.root(185.55, 2.33), 9.409973368, 6) #almost equal
         self.assertEqual(LibMath.root(0.2, 0.2), 0.00032)
 
     def test_root_int_negative(self):
