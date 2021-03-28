@@ -12,6 +12,7 @@
 import unittest
 import LibMath
 
+
 # Tests of function add
 class TestAdd(unittest.TestCase):
 
@@ -30,15 +31,16 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(LibMath.add(-5, 0), -5)
 
     def test_add_float_positive(self):
-        self.assertEqual(LibMath.add(0.25, 0.30), (0.55))
-        self.assertEqual(LibMath.add(0, 0.30), (0.30))
-        self.assertEqual(LibMath.add(15.88, 33.1259), (49.0059))
+        self.assertEqual(LibMath.add(0.25, 0.30), 0.55)
+        self.assertEqual(LibMath.add(0, 0.30), 0.30)
+        self.assertEqual(LibMath.add(15.88, 33.1259), 49.0059)
 
     def test_add_float_negative(self):
-        self.assertEqual(LibMath.add(0.25, -0.30), (-0.05))
-        self.assertEqual(LibMath.add(-0.25, 0.30), (0.05))
-        self.assertEqual(LibMath.add(-15.30, -0.30), (-15.60))
-        self.assertEqual(LibMath.add(15.88, -33.1259), (-17.2459))
+        self.assertEqual(LibMath.add(0.25, -0.30), -0.05)
+        self.assertEqual(LibMath.add(-0.25, 0.30), 0.05)
+        self.assertEqual(LibMath.add(-15.30, -0.30), -15.60)
+        self.assertEqual(LibMath.add(15.88, -33.1259), -17.2459)
+
 
 # Tests of function sub
 class TestSub(unittest.TestCase):
@@ -67,6 +69,7 @@ class TestSub(unittest.TestCase):
         self.assertEqual(LibMath.sub(-150.33, -150.33), 0)
         self.assertEqual(LibMath.sub(150.33, -150.33), 300.66)
         self.assertEqual(LibMath.sub(-150.33, 150.33), -300.66)
+
 
 # Tests of function mul
 class TestMul(unittest.TestCase):
@@ -98,6 +101,7 @@ class TestMul(unittest.TestCase):
         self.assertEqual(LibMath.mul(-100.215, 0), 0)
         self.assertEqual(LibMath.mul(0, -155.15), 0)
 
+
 # Tests of function div
 class TestDiv(unittest.TestCase):
 
@@ -121,7 +125,6 @@ class TestDiv(unittest.TestCase):
         self.assertEqual(LibMath.div(0, 5.13), 0)
         self.assertEqual(LibMath.div(0, -5.25), 0)
 
-
     def test_div_int_negative(self):
         self.assertEqual(LibMath.div(10, -5), -2)
         self.assertEqual(LibMath.div(-5, 10), -0.5)
@@ -138,6 +141,7 @@ class TestDiv(unittest.TestCase):
         self.assertEqual(LibMath.div(-5, 64.25), -0.077821)
         self.assertEqual(LibMath.div(-10.54, -5), 2.108)
         self.assertEqual(LibMath.div(-5, -64.25), 0.077821)
+
 
 # Tests of function fact
 class TestFact(unittest.TestCase):
@@ -158,6 +162,7 @@ class TestFact(unittest.TestCase):
     def test_fact_int_positive(self):
         self.assertEqual(LibMath.fact(3), 6)
         self.assertEqual(LibMath.fact(12), 479001600)
+
 
 # Tests of function power
 class TestPower(unittest.TestCase):
@@ -198,6 +203,7 @@ class TestPower(unittest.TestCase):
         self.assertEqual(LibMath.power(-11.2, 3), -1404.928)
         self.assertEqual(LibMath.power(-21.112, 5), -4194178.272)
 
+
 # Tests of function root
 class TestRoot(unittest.TestCase):
 
@@ -226,7 +232,7 @@ class TestRoot(unittest.TestCase):
         self.assertEqual(LibMath.root(0, 2), 0)
 
     def test_float_positive(self):
-        self.assertEqual(LibMath.root(185.55, 2.33), 9.409973368 )
+        self.assertEqual(LibMath.root(185.55, 2.33), 9.409973368)
         self.assertEqual(LibMath.root(0.2, 0.2), 0.00032)
 
     def test_int_negative(self):
@@ -240,8 +246,6 @@ class TestRoot(unittest.TestCase):
         self.assertEqual(LibMath.root(-0.2, -0.2), -3125)
 
 
-
 # to simplify testing
 if __name__ == '__main__':
     unittest.main()
-
