@@ -1,27 +1,36 @@
 from tkinter import *
 from PIL import Image, ImageTk
 import tkinter as tk
+from tkinter import font as tkFont
 
+button_color = "#424242"
 
-button_color = "salmon2"
+hbgc = "#303030"
+
+padx_size = 26
+pady_size = 8
 
 
 #initializing root window
 root = Tk()
 root.title("Gazorpazorpcalc")
-root.configure(bg = "salmon3")
+root.configure(bg = "#303030")
 root.resizable(0, 0)
 
-photo = PhotoImage(file = "/home/stepan/1bit/ivs/proj2/logofinal.png")
-root.iconphoto(False, photo)
+
+
+
+myFont = tkFont.Font(family = 'Helvetica', size = 22, weight = 'bold')
 
 #adding logo
-image = Image.open("/home/stepan/1bit/ivs/proj2/logofinal.png")
+
+
+image = Image.open("logo.png")
 image = image.resize((110, 110))
 photo = ImageTk.PhotoImage(image)
 
 
-label = Label(root, image = photo)
+label = Label(root, image = photo, borderwidth = 0)
 label.image = photo
 label.grid(row = 0, column = 0)
 
@@ -39,43 +48,42 @@ t = Entry(root, width = 10, font = ('Helvetica', 50))
 t.grid(row = 0, column = 1, columnspan = 5)
 
 
-#TODO
-def button_add():
-    return
 
 #function to add buttonnumber to the entry
-def button_num(number):
+def button_num(foo):
     current = t.get()
     t.delete(0, END)
-    t.insert(0, str(current) + str(number))
+    t.insert(0, str(current) + str(foo))
     return
 
 #creating number buttons
-button_1 = Button(root, text = "1", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = lambda: button_num(1))
-button_2 = Button(root, text = "2", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = lambda: button_num(2))
-button_3 = Button(root, text = "3", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = lambda: button_num(3))
-button_4 = Button(root, text = "4", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = lambda: button_num(4))
-button_5 = Button(root, text = "5", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = lambda: button_num(5))
-button_6 = Button(root, text = "6", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = lambda: button_num(6))
-button_7 = Button(root, text = "7", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = lambda: button_num(7))
-button_8 = Button(root, text = "8", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = lambda: button_num(8))
-button_9 = Button(root, text = "9", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = lambda: button_num(9))
-button_0 = Button(root, text = "0", bd = 0, bg = button_color, padx = 100, pady = 20, height = 2, width = 10, command = lambda: button_num(0))
+button_g = Button(root, text = "1", font = myFont, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num(1))
+button_1 = button_g
+button_2 = Button(root, text = "2", font = myFont, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num(2))
+button_3 = Button(root, text = "3", font = myFont, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num(3))
+button_4 = Button(root, text = "4", font = myFont, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num(4))
+button_5 = Button(root, text = "5", font = myFont, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num(5))
+button_6 = Button(root, text = "6", font = myFont, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num(6))
+button_7 = Button(root, text = "7", font = myFont, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num(7))
+button_8 = Button(root, text = "8", font = myFont, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num(8))
+button_9 = Button(root, text = "9", font = myFont, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num(9))
+button_0 = Button(root, text = "0", font = myFont, bd = 0, highlightbackground = hbgc, bg = button_color, padx = 70, pady = 8, height = 2, width = 8, command = lambda: button_num(0))
 
 #creating operations buttons
-button_point = Button(root, text = ".", bd = 0, bg = button_color, padx = 50, pady = 20, height = 2, width = 5, command = button_add)
-button_plus = Button(root, text = "+", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = button_add)
-button_minus = Button(root, text = "-", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = button_add)
-button_times = Button(root, text = "x", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = button_add)
-button_divide = Button(root, text= ":", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = button_add)
-button_equal = Button(root, text = "=", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = button_add)
-button_power = Button(root, text = "^", bd = 0, bg = button_color, padx = 48, pady = 20, height = 2, width = 5, command = button_add)
-button_root = Button(root, text = "√", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = button_add)
-button_abs = Button(root, text = "ABS", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = button_add)
-button_del = Button(root, text = "DEL", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = button_add)
-button_ac = Button(root, text = "AC", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = button_add)
-button_ce = Button(root, text = "CE", bd = 0, bg = button_color, padx = 49, pady = 20, height = 2, width = 5, command = button_add)
-button_fact = Button(root, text = "!", bd = 0, bg = button_color, padx = 50, pady = 20, height = 2, width = 5, command = button_add)
+button_point = Button(root, text = ".", font = myFont,bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("."))
+button_plus = Button(root, text = "+", font = myFont,bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("+"))
+button_minus = Button(root, text = "-", font = myFont,bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("-"))
+button_times = Button(root, text = "x", font = myFont,bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("x"))
+button_divide = Button(root, text= ":", font = myFont,bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num(":"))
+button_equal = Button(root, text = "=", font = myFont,bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("="))
+button_power = Button(root, text = "^", font = myFont,bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("√"))
+button_root = Button(root, text = "√", font = myFont,bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num())
+button_abs = Button(root, text = "ABS", font = myFont,bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num())
+button_del = Button(root, text = "DEL", font = myFont,bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num)
+button_ac = Button(root, text = "AC", font = myFont,bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num)
+button_ce = Button(root, text = "CE", font = myFont,bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num)
+button_fact = Button(root, text = "!", font = myFont,bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("!"))
+
 
 
 #griding buttons to the root window
