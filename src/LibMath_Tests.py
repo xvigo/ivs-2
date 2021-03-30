@@ -193,7 +193,7 @@ class TestPower(unittest.TestCase):
 
     def test_power_base_float_positive(self):
         self.assertEqual(LibMath.power(2.5, 4), 39.0625)
-        self.assertEqual(LibMath.power(11.589, 6), 2422566.889)
+        self.assertEqual(LibMath.power(11.589, 6), 2422566.889458712667)
         self.assertEqual(LibMath.power(21.112, 5), 4194178.272)
 
     def test_power_base_float_negative(self):
@@ -201,7 +201,7 @@ class TestPower(unittest.TestCase):
         self.assertEqual(LibMath.power(-2.5, 5), -97.65625)
         self.assertAlmostEqual(LibMath.power(-11.589, 3), -1556.459729, 6) #almost equal
         self.assertEqual(LibMath.power(-11.2, 3), -1404.928)
-        self.assertEqual(LibMath.power(-21.112, 5), -4194178.272)
+        self.assertEqual(LibMath.power(-21.112, 5), -4194178.272112056696)
 
 
 # Tests of function root
