@@ -23,9 +23,9 @@ root.resizable(0, 0)
 myFont = tkFont.Font(family = 'Helvetica', size = 22, weight = 'bold')
 
 #adding logo
+#must change line 28 according to local device
 
-
-image = Image.open("logo.png")
+image = Image.open("/home/stepan/1bit/ivs/proj2/git/ivs-2/src/logo.png")
 image = image.resize((110, 110))
 photo = ImageTk.PhotoImage(image)
 
