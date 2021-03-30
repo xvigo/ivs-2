@@ -16,7 +16,7 @@
 # This math library contains basic mathematical function.
 #
 
-
+digits = 10
 ##
 # @brief Function to add two numbers
 #
@@ -25,7 +25,7 @@
 #
 # @return Sum of a and b
 def add(a, b):
-    return round(a + b, 6)
+    return round(a + b, digits)
 
 ##
 # @brief Function to substract one number from another
@@ -35,7 +35,7 @@ def add(a, b):
 #
 # @return Difference of a and b
 def sub(a, b):
-    return round(a - b, 6)
+    return round(a - b, digits)
 
 ##
 # @brief Function to multiply two numbers
@@ -45,7 +45,7 @@ def sub(a, b):
 #
 # @return Product of a and b
 def mul(a, b):
-    return round(a * b, 6)
+    return round(a * b, digits)
 
 ##
 # @brief Function to divide two numbers
@@ -57,7 +57,7 @@ def mul(a, b):
 def div(a, b):
     if b == 0:
         raise ZeroDivisionError("Error - dividing by zero")
-    return round(a / b, 6)
+    return round(a / b, digits)
 
 ##
 # @brief Function to compute factorial
@@ -88,7 +88,7 @@ def power(a, exp):
     if not isinstance(exp, int) or exp <= 0:
         raise ValueError("Error - exponent is not a natural number")
 
-    return round(pow(a,exp), 6)
+    return round(a**exp, digits)
 
 ##
 # @brief Function to compute root
@@ -101,14 +101,15 @@ def root(a, deg):
     if deg % 2 == 0 and a < 0:
         raise ValueError("Error - even degree of a negative radicant")
     if deg == 0:
-        raise ValueError("Error - degree can't be zero")
+        raise ValueError("Error - degree has to be greater than 0")
 
     negate = False
     if a < 0 and deg % 2 == 1:
         a = -a
         negate = True
 
-    return round(-pow(a, 1/deg), 6) if negate else round(pow(a, 1/deg), 6)
+    result = round(a**(1/deg), digits)
+    return -result if negate else result
 ##
 # @brief Function to compute absolute value of a given number
 #
