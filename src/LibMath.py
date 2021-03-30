@@ -1,5 +1,15 @@
 #!/usr/bin/python
+###################################################################
+# Project name: Gazorpazorp calculator
+# File: LibMath.py
+# Authors: Vilem Gottwald, Pavel Marek
+# Description: Library implementing basic mathematical operations
+###################################################################
+
+
 ##
+# @file LibMath.py
+#
 # @package gapalib
 # Gapalib is mathematical library for GazorPazorp calculator.
 #
@@ -10,35 +20,32 @@
 ##
 # @brief Function to add two numbers
 #
-# @param add1 First addend
-# @param add2 Second addend
+# @param a First addend
+# @param b Second addend
 #
-# @return Sum of add1 and add2
-@staticmethod
-def add(add1, add2):
-    return add1 + add2
+# @return Sum of a and b
+def add(a, b):
+    return round(a + b, 6)
 
 ##
 # @brief Function to substract one number from another
 #
-# @param minuend Number we substract from
-# @param subtrahend Number we substract
+# @param a Minuend (number we substract from)
+# @param b Subtrahend (number we substract)
 #
-# @return difference of minuend and subtrahend
-@staticmethod
-def sub(minuend, subtrahend):
-    return minuend - subtrahend
+# @return Difference of a and b
+def sub(a, b):
+    return round(a - b, 6)
 
 ##
 # @brief Function to multiply two numbers
 #
-# @param a First number to be multiplied
-# @param b Second number to be multiplied
+# @param a First factor
+# @param b Second factor
 #
 # @return Product of a and b
-@staticmethod
 def mul(a, b):
-    return a * b
+    return round(a * b, 6)
 
 ##
 # @brief Function to divide two numbers
@@ -46,12 +53,11 @@ def mul(a, b):
 # @param a Dividend
 # @param b Divisor
 #
-# @return Quotient of two numbers
-@staticmethod
+# @return Quotient of a and b
 def div(a, b):
     if b == 0:
-        raise Exception("Error - dividing by zero")
-    return a / b
+        raise ZeroDivisionError("Error - dividing by zero")
+    return round(a / b, 6)
 
 ##
 # @brief Function to compute factorial
@@ -59,11 +65,9 @@ def div(a, b):
 # @param a Number, factorial will be computed from
 #
 # @return Factorial of given number
-@staticmethod
-def factorial(a):
+def fact(a):
     if not isinstance(a, int) or a < 0:
-        raise Exception("Error - number is not int or < 0")
-
+        raise ValueError("Error - number isn't integer or is smaller than 0")
     if a == 0:
         return 1
 
@@ -76,22 +80,45 @@ def factorial(a):
 ##
 # @brief Function to compute power
 #
-# @param a Base (number)
+# @param a Base
 # @param exp Exponent
 #
-# @return power
-@staticmethod
+# @return Result of the exponentiation
 def power(a, exp):
-    return pow(a, exp)
+    if not isinstance(exp, int) or exp <= 0:
+        raise ValueError("Error - exponent is not a natural number")
+
+    return round(pow(a,exp), 6)
 
 ##
 # @brief Function to compute root
 #
-# @param deegree Root degree
-# @param radicand Root radicand
+# @param a Radicand
+# @param deg Degree
 #
-# @return power
-@staticmethod
-def root(degree, radicand):
-    root = pow(radicand, 1/degree)
-    return root
+# @return Result of the root
+def root(a, deg):
+    if deg % 2 == 0 and a < 0:
+        raise ValueError("Error - even degree of a negative radicant")
+    if deg == 0:
+        raise ValueError("Error - degree can't be zero")
+
+    negate = False
+    if a < 0 and deg % 2 == 1:
+        a = -a
+        negate = True
+
+    return round(-pow(a, 1/deg), 6) if negate else round(pow(a, 1/deg), 6)
+##
+# @brief Function to compute absolute value of a given number
+#
+# @param x Number, absolute value will be computed from
+#
+# @return Absolute Value of given number
+def abs(x):
+    if x >= 0:
+        return x
+    if x < 0:
+        return -x
+
+# End of file LibMath.py
