@@ -44,7 +44,7 @@ label.grid(row = 0, column = 0)
 
 
 #Entry screen to display numbers and operations
-t = Entry(root, width = 10, bg = "#404040", font = ('Helvetica', 50))
+t = Entry(root,justify = tk.RIGHT, width = 10, bg = "#404040", font = ('Helvetica', 50))
 # input_text = StringVar()
 
 # input_frame = Frame(root, width = 312, height = 50, bd = 0, highlightbackground = "black", highlightcolor = "black", highlightthickness = 1)
@@ -58,11 +58,18 @@ t.grid(row = 0, column = 1, columnspan = 5)
 
 
 #function to add buttonnumber to the entry
-def button_num(foo):
+def button_num(new):
     current = t.get()
     t.delete(0, END)
-    t.insert(0, str(current) + str(foo))
+    formula = str(current) + str(new)
+    t.insert(0, formula)
     return
+
+def equal(formula):
+    return
+def delete():
+    return
+
 
 #creating number buttons
 button_1 = Button(root, text = "1", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num(1))
@@ -83,8 +90,8 @@ button_minus = Button(root, text = "-", font = myFont, activebackground = active
 button_times = Button(root, text = "x", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("x"))
 button_divide = Button(root, text= ":", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num(":"))
 button_equal = Button(root, text = "=", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("="))
-button_power = Button(root, text = "^", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("√"))
-button_root = Button(root, text = "√", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num())
+button_power = Button(root, text = "^", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("^"))
+button_root = Button(root, text = "√", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("√"))
 button_abs = Button(root, text = "ABS", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num())
 button_del = Button(root, text = "DEL", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num)
 button_ac = Button(root, text = "AC", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num)
