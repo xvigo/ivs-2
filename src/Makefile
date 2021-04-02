@@ -11,6 +11,7 @@
 
 #all (spustí progam)
 all:
+	python3 gui.py
 #pack (zabalí projekt tak, aby mohl být odevzdán)
 pack:
 #clean (smaže všechny soubory, co nemají být odevzdány)
@@ -19,9 +20,10 @@ clean:
 run:
 #profile (spustí program pro výpočet směrodatné odchylky s ukázkovým testovacím vstupem)
 profile:
+	python3 profilling.py
 #help (vypíše nápovědu s popisem, co je potřeba udělat před spuštěním programu)
 help:
-	cat help.txt
+	$(info Program is ready to run)
 #test spusti testy matematicke knihovny
 test: LibMath_Tests.py
 	python3 LibMath_Tests.py
