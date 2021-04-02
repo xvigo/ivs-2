@@ -124,31 +124,21 @@ def abs(x):
         return -x
 
 ##
-# @brief Function that checks whether number can be represented as int,
-#        if so, returns the number as int, otherwise as float
+# @brief Function that converts number in any format into the corresponding format
 #
-# @param num Number that is checked
+# @param num Number that is converted
 #
 # @return Number as float or integer, depending on it's value
-def check_int(num):
-    if num == int(num):
-        return int(num)
+def conv_to_num(num):
+    if isinstance(num, str):
+        num = float(num)
+
+    if isinstance(num, int):
+        return num
+    elif isinstance(num, float):
+        return int(num) if num.is_integer() else num
     else:
-        return float(num)
-
-##
-# @brief Function that converts string to int or float depending on its value
-#
-# @param n_str String that will be converted
-#
-# @return Float or string, depending on the content of string
-def str_to_num(n_str):
-    if float(n_str) == int(n_str):
-        return int(n_str)
-    else:
-        return float(n_str)
-
-
+        raise TypeError("Error - wrong parameter type")
 
 ##
 # @brief Function that separates string containing mathematical expression into individual items
@@ -196,58 +186,71 @@ def solve_expr(expression):
             if parsed_expr[i] in op_group:
 
                 if parsed_expr[i] == "!":
-                    operand = str_to_num(parsed_expr[i - 1])
+                    operand = conv_to_num(parsed_expr[i - 1])
                     parsed_expr[i - 1] = (fact(operand))
                     del parsed_expr[i]
                     i -= 1
 
                 elif parsed_expr[i] == "^":
-                    base = str_to_num(parsed_expr[i - 1])
-                    exponent = str_to_num(parsed_expr[i + 1])
+                    base = conv_to_num(parsed_expr[i - 1])
+                    exponent = conv_to_num(parsed_expr[i + 1])
                     parsed_expr[i - 1] = (power(base, exponent))
                     del parsed_expr[i + 1]
                     del parsed_expr[i]
                     i -= 2
 
                 elif parsed_expr[i] == "√":
-                    degree = str_to_num(parsed_expr[i - 1])
-                    base = str_to_num(parsed_expr[i + 1])
-                    parsed_expr[i - 1] = (root(base, degree))
-                    del parsed_expr[i + 1]
-                    del parsed_expr[i]
-                    i -= 2
+
+                    try:
+                        degree = conv_to_num(parsed_expr[i - 1])
+                        num = True
+                    except ValueError:
+                        num = False
+
+                    if num and i != 0:
+                        base = conv_to_num(parsed_expr[i + 1])
+                        parsed_expr[i - 1] = (root(base, degree))
+                        del parsed_expr[i + 1]
+                        del parsed_expr[i]
+                        i -= 2
+                    else:
+                        degree = 2
+                        base = conv_to_num(parsed_expr[i + 1])
+                        parsed_expr[i] = (root(base, degree))
+                        del parsed_expr[i + 1]
+                        i -= 1
 
                 elif parsed_expr[i] == "*":
-                    operand1 = str_to_num(parsed_expr[i - 1])
-                    operand2 = str_to_num(parsed_expr[i + 1])
+                    operand1 = conv_to_num(parsed_expr[i - 1])
+                    operand2 = conv_to_num(parsed_expr[i + 1])
                     parsed_expr[i - 1] = (mul(operand1, operand2))
                     del parsed_expr[i + 1]
                     del parsed_expr[i]
                     i -= 2
 
                 elif parsed_expr[i] == "/":
-                    operand1 = str_to_num(parsed_expr[i - 1])
-                    operand2 = str_to_num(parsed_expr[i + 1])
+                    operand1 = conv_to_num(parsed_expr[i - 1])
+                    operand2 = conv_to_num(parsed_expr[i + 1])
                     parsed_expr[i - 1] = (div(operand1, operand2))
                     del parsed_expr[i + 1]
                     del parsed_expr[i]
                     i -= 2
 
                 elif parsed_expr[i] == "+":
-                    operand1 = str_to_num(parsed_expr[i - 1])
-                    operand2 = str_to_num(parsed_expr[i + 1])
+                    operand1 = conv_to_num(parsed_expr[i - 1])
+                    operand2 = conv_to_num(parsed_expr[i + 1])
                     parsed_expr[i - 1] = (add(operand1, operand2))
                     del parsed_expr[i + 1]
                     del parsed_expr[i]
                     i -= 2
 
                 elif parsed_expr[i] == "-":
-                    operand1 = str_to_num(parsed_expr[i - 1])
-                    operand2 = str_to_num(parsed_expr[i + 1])
+                    operand1 = conv_to_num(parsed_expr[i - 1])
+                    operand2 = conv_to_num(parsed_expr[i + 1])
                     parsed_expr[i - 1] = (sub(operand1, operand2))
                     del parsed_expr[i + 1]
                     del parsed_expr[i]
                     i -= 2
             i += 1
-    return parsed_expr[0]
+    return conv_to_num(parsed_expr[0])
 # End of file LibMath.py
