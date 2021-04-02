@@ -132,15 +132,15 @@ class TestDiv(unittest.TestCase):
 
     def test_div_float_positive(self):
         self.assertEqual(LibMath.div(10.54, 5), 2.108)
-        self.assertEqual(LibMath.div(5, 64.25), 0.077821)
+        self.assertAlmostEqual(LibMath.div(5, 64.25), 0.077821)
 
     def test_div_float_negative(self):
         self.assertEqual(LibMath.div(10.54, -5), -2.108)
-        self.assertEqual(LibMath.div(5, -64.25), -0.077821)
+        self.assertAlmostEqual(LibMath.div(5, -64.25), -0.077821)
         self.assertEqual(LibMath.div(-10.54, 5), -2.108)
-        self.assertEqual(LibMath.div(-5, 64.25), -0.077821)
+        self.assertAlmostEqual(LibMath.div(-5, 64.25), -0.077821)
         self.assertEqual(LibMath.div(-10.54, -5), 2.108)
-        self.assertEqual(LibMath.div(-5, -64.25), 0.077821)
+        self.assertAlmostEqual(LibMath.div(-5, -64.25), 0.077821011673)
 
 
 # Tests of function fact
@@ -193,15 +193,15 @@ class TestPower(unittest.TestCase):
 
     def test_power_base_float_positive(self):
         self.assertEqual(LibMath.power(2.5, 4), 39.0625)
-        self.assertEqual(LibMath.power(11.589, 6), 2422566.889)
-        self.assertEqual(LibMath.power(21.112, 5), 4194178.272)
+        self.assertAlmostEqual(LibMath.power(11.589, 6), 2422566.889458712667)
+        self.assertAlmostEqual(LibMath.power(21.112, 5), 4194178.272112057)
 
     def test_power_base_float_negative(self):
         self.assertEqual(LibMath.power(-2.5, 4), 39.0625)
         self.assertEqual(LibMath.power(-2.5, 5), -97.65625)
-        self.assertAlmostEqual(LibMath.power(-11.589, 3), -1556.459729, 6) #almost equal
-        self.assertEqual(LibMath.power(-11.2, 3), -1404.928)
-        self.assertEqual(LibMath.power(-21.112, 5), -4194178.272)
+        self.assertAlmostEqual(LibMath.power(-11.589, 3), -1556.459729, 6) 
+        self.assertAlmostEqual(LibMath.power(-11.2, 3), -1404.928)
+        self.assertAlmostEqual(LibMath.power(-21.112, 5), -4194178.272112056696)
 
 
 # Tests of function root
@@ -227,12 +227,12 @@ class TestRoot(unittest.TestCase):
 
     def test_root_int_positive(self):
         self.assertEqual(LibMath.root(1, 5), 1)
-        self.assertAlmostEqual(LibMath.root(155, 5), 2.741992987, 6) #almost equal
+        self.assertAlmostEqual(LibMath.root(155, 5), 2.741992987, 6) 
         self.assertEqual(LibMath.root(15, 1), 15)
         self.assertEqual(LibMath.root(0, 2), 0)
 
     def test_root_float_positive(self):
-        self.assertAlmostEqual(LibMath.root(185.55, 2.33), 9.409973368, 6) #almost equal
+        self.assertAlmostEqual(LibMath.root(185.55, 2.33), 9.409973368, 6) 
         self.assertEqual(LibMath.root(0.2, 0.2), 0.00032)
 
     def test_root_int_negative(self):
