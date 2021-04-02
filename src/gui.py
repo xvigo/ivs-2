@@ -3,6 +3,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import font as tkFont
+from LibMath import *
 
 button_color = "#424242"
 
@@ -65,7 +66,11 @@ def button_num(new):
     t.insert(0, formula)
     return
 
-def equal(formula):
+def equal():
+    expr = t.get()
+    t.delete(0, END)
+    result = solve_expr(expr)
+    t.insert(0, str(result))
     return
 def delete():
     return
@@ -89,7 +94,7 @@ button_plus = Button(root, text = "+", font = myFont, activebackground = active_
 button_minus = Button(root, text = "-", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("-"))
 button_times = Button(root, text = "x", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("x"))
 button_divide = Button(root, text= ":", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num(":"))
-button_equal = Button(root, text = "=", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("="))
+button_equal = Button(root, text = "=", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: equal())
 button_power = Button(root, text = "^", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("^"))
 button_root = Button(root, text = "√", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("√"))
 button_abs = Button(root, text = "ABS", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num())
