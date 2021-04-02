@@ -41,11 +41,11 @@ photo = ImageTk.PhotoImage(image)
 
 label = Label(root, image = photo, borderwidth = 0)
 label.image = photo
-label.grid(row = 0, column = 0)
+label.grid(row = 0, column = 0, rowspan = 2)
 
 
 #Entry screen to display numbers and operations
-t = Entry(root,justify = tk.RIGHT, width = 10, bg = "#404040", font = ('Helvetica', 50))
+t = Entry(root,justify = LEFT, width = 25, bg = "#303030", bd = 0, highlightbackground = hbgc, font = ('Helvetica', 20))
 # input_text = StringVar()
 
 # input_frame = Frame(root, width = 312, height = 50, bd = 0, highlightbackground = "black", highlightcolor = "black", highlightthickness = 1)
@@ -54,25 +54,52 @@ t = Entry(root,justify = tk.RIGHT, width = 10, bg = "#404040", font = ('Helvetic
 
 # t = Entry(input_frame, font = ('arial', 18, 'bold'), textvariable = input_text, width = 50, bg = "#eee", bd = 0, justify = RIGHT)
 
-t.grid(row = 0, column = 1, columnspan = 5)
 
 
+t2 = Entry(root,justify = RIGHT, width = 15, bg = "#404040", bd = 0, highlightbackground = hbgc, font = ('Helvetica', 35))
 
+t2.grid(row = 1, column = 1, columnspan = 5, sticky = N)
+t.grid(row = 0, column = 1, columnspan = 5, sticky = S)
+
+ans = 1
 #function to add buttonnumber to the entry
 def button_num(new):
-    current = t.get()
-    t.delete(0, END)
+    global ans
+    if ans == 0:
+       b_clear_empty()
+    current = t2.get()
+    t2.delete(0, END)
     formula = str(current) + str(new)
-    t.insert(0, formula)
+    t2.insert(0, formula)
+    ans = 1
+    return
+
+def b_operator(new):
+    global ans
+    current = t2.get()
+    t2.delete(0, END)
+    formula = str(current) + str(new)
+    t2.insert(0, formula)
+    ans = 1
     return
 
 def equal():
-    expr = t.get()
+    global ans
+    expr = t2.get()
     t.delete(0, END)
     result = solve_expr(expr)
-    t.insert(0, str(result))
+
+    t.delete(0, END)
+    t.insert(0, str(expr)+str(" = "))
+    t2.delete(0, END)
+    t2.insert(0, str(result))
+    ans = 0
     return
-def delete():
+def b_delete():
+    t2.delete(len(t.get())-1, tk.END)
+    return
+def b_clear_empty():
+    t2.delete(0, END)
     return
 
 
@@ -90,50 +117,50 @@ button_0 = Button(root, text = "0", font = myFont, activebackground = active_col
 
 #creating operations buttons
 button_point = Button(root, text = ".", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("."))
-button_plus = Button(root, text = "+", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("+"))
-button_minus = Button(root, text = "-", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("-"))
-button_times = Button(root, text = "x", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("*"))
-button_divide = Button(root, text= ":", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("/"))
+button_plus = Button(root, text = "+", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("+"))
+button_minus = Button(root, text = "-", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("-"))
+button_times = Button(root, text = "x", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("*"))
+button_divide = Button(root, text= ":", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("/"))
 button_equal = Button(root, text = "=", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: equal())
-button_power = Button(root, text = "^", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("^"))
+button_power = Button(root, text = "^", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("^"))
 button_root = Button(root, text = "√", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("√"))
 button_abs = Button(root, text = "ABS", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num())
-button_del = Button(root, text = "DEL", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num)
+button_del = Button(root, text = "DEL", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_delete())
 button_ac = Button(root, text = "AC", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num)
-button_ce = Button(root, text = "CE", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num)
+button_ce = Button(root, text = "CE", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_clear_empty())
 button_fact = Button(root, text = "!", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: button_num("!"))
 
 
 
 #griding buttons to the root window
-button_abs.grid(row = 1, column = 0)
-button_ac.grid(row = 1, column = 1)
-button_ce.grid(row = 1, column = 2)
-button_del.grid(row = 1, column = 3)
+button_abs.grid(row = 2, column = 0)
+button_ac.grid(row = 2, column = 1)
+button_ce.grid(row = 2, column = 2)
+button_del.grid(row = 2, column = 3)
 
-button_power.grid(row = 2, column = 0)
-button_root.grid(row = 2, column = 1)
-button_fact.grid(row = 2, column = 2)
-button_divide.grid(row = 2, column = 3)
+button_power.grid(row = 3, column = 0)
+button_root.grid(row = 3, column = 1)
+button_fact.grid(row = 3, column = 2)
+button_divide.grid(row = 3, column = 3)
 
-button_7.grid(row = 3, column = 0)
-button_8.grid(row = 3, column = 1)
-button_9.grid(row = 3, column = 2)
-button_times.grid(row = 3, column = 3)
+button_7.grid(row = 4, column = 0)
+button_8.grid(row = 4, column = 1)
+button_9.grid(row = 4, column = 2)
+button_times.grid(row = 4, column = 3)
 
-button_4.grid(row = 4, column = 0)
-button_5.grid(row = 4, column = 1)
-button_6.grid(row = 4, column = 2)
-button_minus.grid(row = 4, column = 3)
+button_4.grid(row = 5, column = 0)
+button_5.grid(row = 5, column = 1)
+button_6.grid(row = 5, column = 2)
+button_minus.grid(row = 5, column = 3)
 
-button_1.grid(row = 5, column = 0)
-button_2.grid(row = 5, column = 1)
-button_3.grid(row = 5, column = 2)
-button_plus.grid(row = 5, column = 3)
+button_1.grid(row = 6, column = 0)
+button_2.grid(row = 6, column = 1)
+button_3.grid(row = 6, column = 2)
+button_plus.grid(row = 6, column = 3)
 
-button_0.grid(row = 6, column = 0, columnspan = 2)
-button_point.grid(row = 6, column = 2)
-button_equal.grid(row = 6, column = 3)
+button_0.grid(row = 7, column = 0, columnspan = 2)
+button_point.grid(row = 7, column = 2)
+button_equal.grid(row = 7, column = 3)
 
 
 root.mainloop()
