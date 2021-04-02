@@ -20,9 +20,12 @@ run:
 #profile (spustí program pro výpočet směrodatné odchylky s ukázkovým testovacím vstupem)
 profile:
 #help (vypíše nápovědu s popisem, co je potřeba udělat před spuštěním programu)
-help: 
+help:
 	cat help.txt
 #test spusti testy matematicke knihovny
 test: LibMath_Tests.py
 	python3 LibMath_Tests.py
 
+# install
+# sudo apt-get install python3-tk
+# sudo apt-get install python3-pil python3-pil.imagetk

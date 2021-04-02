@@ -1,3 +1,4 @@
+import os
 from tkinter import *
 from PIL import Image, ImageTk
 import tkinter as tk
@@ -24,15 +25,15 @@ root.title("Gazorpazorpcalc")
 root.configure(bg = "#303030")
 root.resizable(0, 0)
 
-
-
+path = os.path.realpath(__file__).rsplit('/', 1)
+logo_location = path[0] + "/logo.png"
 
 myFont = tkFont.Font(family = 'Helvetica', size = 22, weight = 'bold')
 
 #adding logo
 #must change line 28 according to local device
 
-image = Image.open("/home/stepan/1bit/ivs/ivs-2/src/logo.png")
+image = Image.open(logo_location)
 image = image.resize((110, 110))
 photo = ImageTk.PhotoImage(image)
 
