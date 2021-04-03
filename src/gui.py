@@ -97,16 +97,17 @@ def b_equal():
     ans = 0
     return
 def b_delete():
-    t2.delete(len(t.get())-1, tk.END)
+    index = len(t2.get()) - 1
+    t2.delete(index, END)
     return
 def b_clear_empty():
     t2.delete(0, END)
     return
 
 def b_abs():
-    val = t.get()
-    t.delete(0, END)
-    t.insert(0, str(conv_to_num(abs(float(val)))))
+    val = t2.get()
+    t2.delete(0, END)
+    t2.insert(0, str(abs(solve_expr(val))))
     return
 
 #creating number
@@ -125,8 +126,8 @@ button_0 = Button(root, text = "0", font = myFont, activebackground = active_col
 button_point = Button(root, text = ".", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num("."))
 button_plus = Button(root, text = "+", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("+"))
 button_minus = Button(root, text = "-", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("-"))
-button_times = Button(root, text = "x", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("*"))
-button_divide = Button(root, text= ":", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("/"))
+button_times = Button(root, text = "*", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("*"))
+button_divide = Button(root, text= "/", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("/"))
 button_equal = Button(root, text = "=", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_equal())
 button_power = Button(root, text = "^", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("^"))
 button_root = Button(root, text = "√", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num("√"))

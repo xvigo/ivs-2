@@ -237,20 +237,46 @@ def solve_expr(expression):
                     i -= 2
 
                 elif parsed_expr[i] == "+":
-                    operand1 = conv_to_num(parsed_expr[i - 1])
-                    operand2 = conv_to_num(parsed_expr[i + 1])
-                    parsed_expr[i - 1] = (add(operand1, operand2))
-                    del parsed_expr[i + 1]
-                    del parsed_expr[i]
-                    i -= 2
+                    if i == 0:
+                        parsed_expr[i] = conv_to_num(parsed_expr[i + 1])
+                        del parsed_expr[i + 1]
+                        i -= 1
+                    elif parsed_expr[i + 1] == "-":
+                        parsed_expr[i] = "-"
+                        del parsed_expr[i + 1]
+                        i -= 1
+                    elif parsed_expr[i + 1] == "+":
+                        parsed_expr[i] = "+"
+                        del parsed_expr[i + 1]
+                        i -= 1
+                    else:
+                        operand1 = conv_to_num(parsed_expr[i - 1])
+                        operand2 = conv_to_num(parsed_expr[i + 1])
+                        parsed_expr[i - 1] = (add(operand1, operand2))
+                        del parsed_expr[i + 1]
+                        del parsed_expr[i]
+                        i -= 2
 
                 elif parsed_expr[i] == "-":
-                    operand1 = conv_to_num(parsed_expr[i - 1])
-                    operand2 = conv_to_num(parsed_expr[i + 1])
-                    parsed_expr[i - 1] = (sub(operand1, operand2))
-                    del parsed_expr[i + 1]
-                    del parsed_expr[i]
-                    i -= 2
+                    if i == 0:
+                        parsed_expr[i] = - conv_to_num(parsed_expr[i + 1])
+                        del parsed_expr[i + 1]
+                        i -= 1
+                    elif parsed_expr[i + 1] == "-":
+                        parsed_expr[i] = "+"
+                        del parsed_expr[i + 1]
+                        i -= 1
+                    elif parsed_expr[i + 1] == "+":
+                        parsed_expr[i] = "-"
+                        del parsed_expr[i + 1]
+                        i -= 1
+                    else:
+                        operand1 = conv_to_num(parsed_expr[i - 1])
+                        operand2 = conv_to_num(parsed_expr[i + 1])
+                        parsed_expr[i - 1] = (sub(operand1, operand2))
+                        del parsed_expr[i + 1]
+                        del parsed_expr[i]
+                        i -= 2
             i += 1
     return conv_to_num(parsed_expr[0])
 # End of file LibMath.py
