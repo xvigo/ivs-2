@@ -56,8 +56,23 @@ def mul(a, b):
 # @return Quotient of a and b
 def div(a, b):
     if b == 0:
-        raise ZeroDivisionError("Error - dividing by zero")
+        raise ZeroDivisionError("Division error - dividing by zero")
     return round(a / b, digits)
+
+##
+# @brief Function to compute the remainder of a division,
+#           both operands have to be integers
+#
+# @param a Dividend
+# @param b Divisor
+#
+# @return Remainder of a and b division
+def mod(a, b):
+    if not(isinstance(a, int) and isinstance (b, int)):
+        raise ValueError("Modulo error - both operands have to be integer")
+    if b == 0:
+        raise ZeroDivisionError("Division error - dividing by zero")
+    return round(a % b, digits)
 
 ##
 # @brief Function to compute factorial
@@ -67,7 +82,7 @@ def div(a, b):
 # @return Factorial of given number
 def fact(a):
     if not isinstance(a, int) or a < 0:
-        raise ValueError("Error - number isn't integer or is smaller than 0")
+        raise ValueError("Factorial error - number isn't integer or is smaller than 0")
     if a == 0:
         return 1
 
@@ -86,7 +101,7 @@ def fact(a):
 # @return Result of the exponentiation
 def power(a, exp):
     if not isinstance(exp, int) or exp <= 0:
-        raise ValueError("Error - exponent is not a natural number")
+        raise ValueError("Power error - exponent is not a natural number")
 
     return round(a**exp, digits)
 
@@ -99,9 +114,9 @@ def power(a, exp):
 # @return Result of the root
 def root(a, deg):
     if deg % 2 == 0 and a < 0:
-        raise ValueError("Error - even degree of a negative radicant")
+        raise ValueError("Root error - even degree of a negative radicant")
     if deg == 0:
-        raise ValueError("Error - degree has to be greater than 0")
+        raise ValueError("Root error - degree has to be greater than 0")
 
     negate = False
     if a < 0 and deg % 2 == 1:
@@ -147,7 +162,7 @@ def conv_to_num(num):
 #
 # @return List containing expression items
 def parse_expr(expression):
-    operators_l = ["!", "^", "√", "*", "/", "+", "-"]
+    operators_l = ["!", "^", "√", "*", "/", "%", "+", "-"]
     separated = list()
     number = True
     num_str = ""
@@ -178,7 +193,7 @@ def parse_expr(expression):
 #
 # @return Result of the expression
 def solve_expr(expression):
-    operators = [["!"], ["^", "√"], ["*", "/"], ["+", "-"]]
+    operators = [["!"], ["^", "√"], ["*", "/", "%"], ["+", "-"]]
     parsed_expr = parse_expr(expression)
     for op_group in operators:
         i = 0
@@ -232,6 +247,14 @@ def solve_expr(expression):
                     operand1 = conv_to_num(parsed_expr[i - 1])
                     operand2 = conv_to_num(parsed_expr[i + 1])
                     parsed_expr[i - 1] = (div(operand1, operand2))
+                    del parsed_expr[i + 1]
+                    del parsed_expr[i]
+                    i -= 2
+
+                elif parsed_expr[i] == "%":
+                    operand1 = conv_to_num(parsed_expr[i - 1])
+                    operand2 = conv_to_num(parsed_expr[i + 1])
+                    parsed_expr[i - 1] = (mod(operand1, operand2))
                     del parsed_expr[i + 1]
                     del parsed_expr[i]
                     i -= 2
