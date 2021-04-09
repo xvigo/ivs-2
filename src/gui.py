@@ -90,7 +90,12 @@ def b_equal():
         return
     t.delete(0, tk.END)
 
-    result = pe.solve_expr(expr)
+    try:
+        result = pe.solve_expr(expr)
+    except ValueError:
+        result = str("Value Error")
+    except ZeroDivisionError:
+        result = str("Zero division Error")
 
     t.delete(0, tk.END)
     t.insert(0, str(expr)+str(" = "))
