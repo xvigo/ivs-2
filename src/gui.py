@@ -44,7 +44,7 @@ label.grid(row = 0, column = 0, rowspan = 2)
 
 
 #Entry screen to display numbers and operations
-t = tk.Entry(root,justify = tk.LEFT, width = 25, bg = "#303030", bd = 0, highlightbackground = hbgc, font = ('Helvetica', 20))
+t = tk.Entry(root,justify = tk.LEFT,width = 26, bg = "#303030", bd = 0, highlightbackground = hbgc, font = ('Helvetica', 20))
 # input_text = StringVar()
 
 # input_frame = Frame(root, width = 312, height = 50, bd = 0, highlightbackground = "black", highlightcolor = "black", highlightthickness = 1)
@@ -56,7 +56,6 @@ t = tk.Entry(root,justify = tk.LEFT, width = 25, bg = "#303030", bd = 0, highlig
 
 
 t2 = tk.Entry(root,justify = tk.RIGHT, width = 15, bg = "#404040", bd = 0, highlightbackground = hbgc, font = ('Helvetica', 35))
-
 t2.grid(row = 1, column = 1, columnspan = 5, sticky = tk.N)
 t.grid(row = 0, column = 1, columnspan = 5, sticky = tk.S)
 
@@ -96,7 +95,8 @@ def b_equal():
         result = str("Value Error")
     except ZeroDivisionError:
         result = str("Zero division Error")
-
+    except IndexError:
+        result = str("Value Error")
     t.delete(0, tk.END)
     t.insert(0, str(expr)+str(" = "))
     t2.delete(0, tk.END)
@@ -178,7 +178,6 @@ button_plus.grid(row = 6, column = 3)
 button_0.grid(row = 7, column = 0, columnspan = 2)
 button_point.grid(row = 7, column = 2)
 button_equal.grid(row = 7, column = 3)
-
 
 root.mainloop()
 
