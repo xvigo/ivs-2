@@ -1,9 +1,8 @@
 import os
-from tkinter import *
 from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import font as tkFont
-from LibMath import *
+import LibProcExpr as pe
 
 button_color = "#424242"
 
@@ -21,7 +20,7 @@ pady_size = 8
 
 
 #initializing root window
-root = Tk()
+root = tk.Tk()
 root.title("Gazorpazorpcalc")
 root.configure(bg = "#303030")
 root.resizable(0, 0)
@@ -39,13 +38,13 @@ image = image.resize((110, 110))
 photo = ImageTk.PhotoImage(image)
 
 
-label = Label(root, image = photo, borderwidth = 0)
+label = tk.Label(root, image = photo, borderwidth = 0)
 label.image = photo
 label.grid(row = 0, column = 0, rowspan = 2)
 
 
 #Entry screen to display numbers and operations
-t = Entry(root,justify = LEFT, width = 25, bg = "#303030", bd = 0, highlightbackground = hbgc, font = ('Helvetica', 20))
+t = tk.Entry(root,justify = tk.LEFT, width = 25, bg = "#303030", bd = 0, highlightbackground = hbgc, font = ('Helvetica', 20))
 # input_text = StringVar()
 
 # input_frame = Frame(root, width = 312, height = 50, bd = 0, highlightbackground = "black", highlightcolor = "black", highlightthickness = 1)
@@ -56,10 +55,10 @@ t = Entry(root,justify = LEFT, width = 25, bg = "#303030", bd = 0, highlightback
 
 
 
-t2 = Entry(root,justify = RIGHT, width = 15, bg = "#404040", bd = 0, highlightbackground = hbgc, font = ('Helvetica', 35))
+t2 = tk.Entry(root,justify = tk.RIGHT, width = 15, bg = "#404040", bd = 0, highlightbackground = hbgc, font = ('Helvetica', 35))
 
-t2.grid(row = 1, column = 1, columnspan = 5, sticky = N)
-t.grid(row = 0, column = 1, columnspan = 5, sticky = S)
+t2.grid(row = 1, column = 1, columnspan = 5, sticky = tk.N)
+t.grid(row = 0, column = 1, columnspan = 5, sticky = tk.S)
 
 ans = 1
 #function to add buttonnumber to the entry
@@ -69,7 +68,7 @@ def b_num(new):
     if ans == 0:
        b_clear_empty()
     current = t2.get()
-    t2.delete(0, END)
+    t2.delete(0, tk.END)
     formula = str(current) + str(new)
     t2.insert(0, formula)
     ans = 1
@@ -78,7 +77,7 @@ def b_num(new):
 def b_operator(new):
     global ans
     current = t2.get()
-    t2.delete(0, END)
+    t2.delete(0, tk.END)
     formula = str(current) + str(new)
     t2.insert(0, formula)
     ans = 1
@@ -87,56 +86,61 @@ def b_operator(new):
 def b_equal():
     global ans
     expr = t2.get()
-    t.delete(0, END)
-    result = solve_expr(expr)
+    if len(expr) == 0:
+        return
+    t.delete(0, tk.END)
 
-    t.delete(0, END)
+    result = pe.solve_expr(expr)
+
+    t.delete(0, tk.END)
     t.insert(0, str(expr)+str(" = "))
-    t2.delete(0, END)
+    t2.delete(0, tk.END)
     t2.insert(0, str(result))
     ans = 0
     return
+
+
 def b_delete():
     index = len(t2.get()) - 1
-    t2.delete(index, END)
+    t2.delete(index, tk.END)
     return
 def b_clear_empty():
-    t2.delete(0, END)
-    t.delete(0, END)
+    t2.delete(0, tk.END)
+    t.delete(0, tk.END)
     return
 
 def b_abs():
     val = t2.get()
-    t2.delete(0, END)
-    t2.insert(0, str(abs(solve_expr(val))))
+    t2.delete(0, tk.END)
+    t2.insert(0, str(abs(pe.solve_expr(val))))
     return
 
 #creating number
-button_1 = Button(root, text = "1", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(1))
-button_2 = Button(root, text = "2", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(2))
-button_3 = Button(root, text = "3", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(3))
-button_4 = Button(root, text = "4", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(4))
-button_5 = Button(root, text = "5", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(5))
-button_6 = Button(root, text = "6", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(6))
-button_7 = Button(root, text = "7", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(7))
-button_8 = Button(root, text = "8", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(8))
-button_9 = Button(root, text = "9", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(9))
-button_0 = Button(root, text = "0", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = 70, pady = 8, height = 2, width = 8, command = lambda: b_num(0))
+button_1 = tk.Button(root, text = "1", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(1))
+button_2 = tk.Button(root, text = "2", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(2))
+button_3 = tk.Button(root, text = "3", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(3))
+button_4 = tk.Button(root, text = "4", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(4))
+button_5 = tk.Button(root, text = "5", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(5))
+button_6 = tk.Button(root, text = "6", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(6))
+button_7 = tk.Button(root, text = "7", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(7))
+button_8 = tk.Button(root, text = "8", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(8))
+button_9 = tk.Button(root, text = "9", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(9))
+button_0 = tk.Button(root, text = "0", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = 70, pady = 8, height = 2, width = 8, command = lambda: b_num(0))
 
 #creating operations buttons
-button_point = Button(root, text = ".", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num("."))
-button_plus = Button(root, text = "+", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("+"))
-button_minus = Button(root, text = "-", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("-"))
-button_times = Button(root, text = "*", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("*"))
-button_divide = Button(root, text= "/", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("/"))
-button_equal = Button(root, text = "=", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_equal())
-button_power = Button(root, text = "^", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("^"))
-button_root = Button(root, text = "√", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num("√"))
-button_abs = Button(root, text = "ABS", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_abs())
-button_del = Button(root, text = "DEL", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_delete())
-button_ac = Button(root, text = "AC", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_clear_empty())
-button_ce = Button(root, text = "MOD", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("%"))
-button_fact = Button(root, text = "!", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("!"))
+button_point = tk.Button(root, text = ".", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num("."))
+button_plus = tk.Button(root, text = "+", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("+"))
+button_minus = tk.Button(root, text = "-", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("-"))
+button_times = tk.Button(root, text = "*", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("*"))
+button_divide = tk.Button(root, text= "/", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("/"))
+button_equal = tk.Button(root, text = "=", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_equal())
+button_power = tk.Button(root, text = "^", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("^"))
+button_root = tk.Button(root, text = "√", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num("√"))
+button_abs = tk.Button(root, text = "ABS", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_abs())
+button_del = tk.Button(root, text = "DEL", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_delete())
+button_ac = tk.Button(root, text = "AC", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_clear_empty())
+button_ce = tk.Button(root, text = "MOD", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("%"))
+button_fact = tk.Button(root, text = "!", font = myFont, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("!"))
 
 
 
