@@ -44,7 +44,7 @@ label.grid(row = 0, column = 0, rowspan = 2)
 
 
 #Entry screen to display history
-t = tk.Entry(root,justify = tk.LEFT, width = 25, bg = "#303030", bd = 0, highlightbackground = hbgc, font = ('Helvetica', 20))
+t = tk.Entry(root,justify = tk.LEFT, width = 26, bg = "#303030", bd = 0, highlightbackground = hbgc, font = ('Helvetica', 20))
 
 
 def validCheck(action, char):
@@ -62,7 +62,7 @@ def validCheck(action, char):
     if i in nums and ans_displayed:
         t2.delete(0, tk.END)
         t2.insert(tk.END, char)
-        t2.after_idle(lambda: t2.configure(validate="all"))
+        t2.after_idle(lambda: t2.configure(validate="key"))
     ans_displayed = False
     return True
 
@@ -104,13 +104,31 @@ def b_equal(event=None):
     expr = t2.get()
     if len(expr) == 0:
         return
+    err = False
 
-    result = pe.solve_expr(expr)
-    glob_result = result
+    try:
+        result = pe.solve_expr(expr)
+    except ValueError:
+        err = True
+        result = str("Value Error")
+    except ZeroDivisionError:
+        err = True
+        result = str("Zero division Error")
+    except IndexError:
+        err = True
+        result = str("Value Error")
+
+    if err:
+       t2.configure(validate="none")
+    else:
+         glob_result = result
+
     t.delete(0, tk.END)
     t.insert(0, str(expr)+str(" = "))
     t2.delete(0, tk.END)
     t2.insert(0, str(result))
+    if err:
+        t2.configure(validate="key")
     ans_displayed = True
     return
 
@@ -191,7 +209,6 @@ button_plus.grid(row = 6, column = 3)
 button_0.grid(row = 7, column = 0, columnspan = 2)
 button_point.grid(row = 7, column = 2)
 button_equal.grid(row = 7, column = 3)
-
 
 root.mainloop()
 
