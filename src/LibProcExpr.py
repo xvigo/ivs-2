@@ -77,13 +77,13 @@ def solve_expr(expression):
         while i < len(parsed_expr):
             if parsed_expr[i] in op_group:
 
-                if parsed_expr[i] == "!":
+                if parsed_expr[i] == "!" and i != 0:
                     operand = conv_to_num(parsed_expr[i - 1])
                     parsed_expr[i - 1] = (math.fact(operand))
                     del parsed_expr[i]
                     i -= 1
 
-                elif parsed_expr[i] == "^":
+                elif parsed_expr[i] == "^" and i != 0:
                     base = conv_to_num(parsed_expr[i - 1])
                     exponent = conv_to_num(parsed_expr[i + 1])
                     parsed_expr[i - 1] = (math.power(base, exponent))
@@ -91,7 +91,7 @@ def solve_expr(expression):
                     del parsed_expr[i]
                     i -= 2
 
-                elif parsed_expr[i] == "√":
+                elif parsed_expr[i] == "√" :
 
                     try:
                         degree = conv_to_num(parsed_expr[i - 1])
@@ -112,7 +112,7 @@ def solve_expr(expression):
                         del parsed_expr[i + 1]
                         i -= 1
 
-                elif parsed_expr[i] == "*":
+                elif parsed_expr[i] == "*" and i != 0:
                     operand1 = conv_to_num(parsed_expr[i - 1])
                     operand2 = conv_to_num(parsed_expr[i + 1])
                     parsed_expr[i - 1] = (math.mul(operand1, operand2))
@@ -120,7 +120,7 @@ def solve_expr(expression):
                     del parsed_expr[i]
                     i -= 2
 
-                elif parsed_expr[i] == "/":
+                elif parsed_expr[i] == "/" and i != 0 :
                     operand1 = conv_to_num(parsed_expr[i - 1])
                     operand2 = conv_to_num(parsed_expr[i + 1])
                     parsed_expr[i - 1] = (math.div(operand1, operand2))
@@ -128,7 +128,7 @@ def solve_expr(expression):
                     del parsed_expr[i]
                     i -= 2
 
-                elif parsed_expr[i] == "%":
+                elif parsed_expr[i] == "%" and i != 0:
                     operand1 = conv_to_num(parsed_expr[i - 1])
                     operand2 = conv_to_num(parsed_expr[i + 1])
                     parsed_expr[i - 1] = (math.mod(operand1, operand2))
@@ -136,7 +136,7 @@ def solve_expr(expression):
                     del parsed_expr[i]
                     i -= 2
 
-                elif parsed_expr[i] == "+":
+                elif parsed_expr[i] == "+" and i != 0:
                     if i == 0:
                         parsed_expr[i] = conv_to_num(parsed_expr[i + 1])
                         del parsed_expr[i + 1]
@@ -157,7 +157,7 @@ def solve_expr(expression):
                         del parsed_expr[i]
                         i -= 2
 
-                elif parsed_expr[i] == "-":
+                elif parsed_expr[i] == "-" and i != 0:
                     if i == 0:
                         parsed_expr[i] = - conv_to_num(parsed_expr[i + 1])
                         del parsed_expr[i + 1]
