@@ -9,11 +9,9 @@ import LibProcExpr as pe
 button_color = "#424242"
 hbgc = "#303030"          #highlight background color
 active_color = "#323232"  #under cursor color
-#fg_color = "#000000"      #font color
 
 padx_size = 26
 pady_size = 8
-
 
 #initializing root calculator window
 root = tk.Tk()
@@ -174,6 +172,8 @@ root.bind('<KP_Enter>', b_equal)
 # @brief Delets last character of the entry.
 # This function is called whenever DEL button is pressed.
 #
+# @param event Parameter that is required for keybinds, default value is None.
+#
 def b_delete(event=None):
     index = len(entry.get()) - 1
     entry.delete(index, tk.END)
@@ -183,15 +183,19 @@ def b_delete(event=None):
 # @brief Erases entry and history.
 # This function is called whenever AC button is pressed.
 #
+# @param event Parameter that is required for keybinds, default value is None.
+#
 def b_clear_empty(event=None):
     entry.delete(0, tk.END)
     ans_str.set("")
     return
+
+# binding corresponding keys to AC button
 root.bind('e',b_clear_empty)
 
 ##
 # @brief Opens toplevel window with help.
-# This function is called whenever Help button is pressed.
+# This function is called whenever Help button is pressed
 #
 def show_help():
     Help = tk.Toplevel(root)
@@ -201,51 +205,67 @@ def show_help():
     Help.resizable(0,0)
     Help.focus_set()
 
-    help_text = "\n\
-Equations are entered in standart mathematical form. \n\
-For example to add 1 and 2 enter:  1+2\n\
-To solve, click on the = button or hit enter on your keyboard.\n\
-\n\
-Calculations are performed in standart mathematical order: \n\
-    1. factorial (!) \n\
-    2. root (√), power (^) \n\
-    3. multiplication (*), division (/), modulo (% | button MOD) \n\
-    4. addition (+), substraction (-) \n\
-\n\
-Supported input format based on operand type:\n\
-    - binary (+, -, * , /, ^, √, %) insert as - number operator number (e.g., 5+3)\n\
-    - unary (!) insert as - number operator (e.g., 5!)\n\
-        square root (√) is also supported as √x\n\
-\n\
-Buttons with special function:\n\
-    - ANS\t - inserts the answer of the last calculation into the input field\n\
-    - MOD\t - inserts modulo operator % into the input field\n\
-    - AC\t - deletes the whole input field\n\
-    - DEL\t - deletes last character from the input field\n\
-\n\
-Keyboard can aslo be used for input, special buttons key equivalents are:\n\
-    <button>         <key>\n\
-      ANS\t\ta\t (answer)\n\
-      AC\t\te\t  (erase)\n\
-      DEL\t       <Backspace>\n\
-      MOD\t\t%\n\
-      √\t\tr\t (root)\n\
-      =\t       <Enter> or <Return>\
-    "
+    help_text = """
+Equations are entered in standart mathematical form.
+For example to add 1 and 2 enter:  1+2
+To solve, click on the = button or hit enter on your keyboard.
+
+Calculations are performed in standart mathematical order:
+    1. factorial (!)
+    2. root (√), power (^)
+    3. multiplication (*), division (/), modulo (% | button MOD)
+    4. addition (+), substraction (-)
+
+Supported input format based on operand type:
+    - binary (+, -, * , /, ^, √, %) insert as - number operator number (e.g., 5+3)
+    - unary (!) insert as - number operator (e.g., 5!)
+        square root (√) is also supported as √x
+
+Buttons with special function:
+    - ANS\t - inserts the answer of the last calculation into the input field
+    - MOD\t - inserts modulo operator % into the input field
+    - AC\t - deletes the whole input field
+    - DEL\t - deletes last character from the input field
+
+Keyboard can aslo be used for input, special buttons key equivalents are:
+    <button>         <key>
+      ANS\t\ta\t (answer)
+      AC\t\te\t  (erase)
+      DEL\t       <Backspace>
+      MOD\t\t%
+      √\t\tr\t (root)
+      =\t       <Enter> or <Return>
+    """
     tk.Message(Help, text=help_text,font=help_text_f, fg="#c7c7c7", bg=button_color, justify=tk.LEFT).pack()
     return
 
+##
+# @brief Auxiliary function for ANS key binding.
+# Calls function that inserts answer into entry field.
+#
+# @param event Parameter that is required for keybinds, default value is None.
+#
 def keyb_ans(event=None):
     b_num(glob_result)
     return
+
+# binding corresponding keys to ANS button
 root.bind('a',keyb_ans)
 
+##
+# @brief Auxiliary function for square root character key binding.
+# Inserts √ character into entry field.
+#
+# @param event Parameter that is required for keybinds, default value is None.
+#
 def keyb_root(event=None):
     b_num("√")
     return
+
+# binding corresponding keys to square root button
 root.bind('r',keyb_root)
 
-# help button in the top bar
+# creating help button in the top bar
 button_help = tk.Button(root, text = "Help", font = help_font, bd = 0, activebackground = active_color, highlightbackground = hbgc, bg = hbgc, padx = padx_size, pady = pady_size, height = 1, width = 2,  command = lambda: show_help())
 
 # number buttons
