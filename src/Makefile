@@ -20,7 +20,7 @@ clean:
 run:
 #profile (spustí program pro výpočet směrodatné odchylky s ukázkovým testovacím vstupem)
 profile:
-	python3 profilling.py
+	python3 profilling.py <"10 20 30 40" 
 #help (vypíše nápovědu s popisem, co je potřeba udělat před spuštěním programu)
 help:
 	$(info Program is ready to run)
