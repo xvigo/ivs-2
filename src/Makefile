@@ -16,19 +16,24 @@ all:
 	sudo apt-get install python3-tk
 	sudo apt-get install python3-pil python3-pil.imagetk
 #pack (zabalí projekt tak, aby mohl být odevzdán)
-pack: clean
+pack: doc update-installer folder clean
+
+#vytvori slozky install,repo, doc
+folder:
 	mkdir -p ../../xbilek25_xmarek75_xgottw07/repo
 	mkdir ../../xbilek25_xmarek75_xgottw07/install
 	mkdir ../../xbilek25_xmarek75_xgottw07/doc
 	cp -a ../../ivs-2/. ../../xbilek25_xmarek75_xgottw07/repo/
 	cp ../dokumentace.pdf ../../xbilek25_xmarek75_xgottw07/doc/
-	cp -a ../installer/gapacalc_inst.deb ../../xbilek25_xmarek75_xgottw07/install/
+	cp -a ../installer/. ../../xbilek25_xmarek75_xgottw07/install/
+	cd ../../xbilek25_xmarek75_xgottw07/repo && rm -rf installer
 	cd ../.. && zip -r xbilek25_xmarek75_xgottw07.zip xbilek25_xmarek75_xgottw07
-	cd ../.. && rm -rf xbilek25_xmarek75_xgottw07
+	cd ../.. && rm -rf xbilek25_xmarek75_xgottw07	
 	
 #clean (smaže všechny soubory, co nemají být odevzdány)
 clean:
-	#rm -r __pycache__
+	#cd .. && rm -rf installer
+
 #run (spustí program - lze předpokládat, že jej před tím někdo manuálně zkompiluje ve VS)
 run:
 	python3 gui.py
@@ -46,3 +51,5 @@ test: LibMath_Tests.py
 update-installer:
 	cp gui.py LibMath.py LibProcExpr.py ../installer/usr/share/gazorpazorp
 	(cd ../installer; dpkg-deb --build ./ gapacalc_inst.deb)
+#vygeneruje doxygen dokumentaci
+doc:
