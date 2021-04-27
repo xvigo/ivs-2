@@ -1,1 +1,5 @@
 /src/__pycache__/
+/installer/usr/share/gazorpazorp/*.py
+/documentation/
+warn.log
+gapacalc_inst.deb
