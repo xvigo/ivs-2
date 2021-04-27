@@ -12,7 +12,9 @@
 
 #all (prelozit program)
 all:
-	python3 gui.py
+	sudo apt-get install python3
+	sudo apt-get install python3-tk
+	sudo apt-get install python3-pil python3-pil.imagetk
 #pack (zabalí projekt tak, aby mohl být odevzdán)
 pack: clean
 	mkdir -p ../../xbilek25_xmarek75_xgottw07/repo
@@ -26,7 +28,7 @@ pack: clean
 	
 #clean (smaže všechny soubory, co nemají být odevzdány)
 clean:
-	
+	#rm -r __pychache__
 #run (spustí program - lze předpokládat, že jej před tím někdo manuálně zkompiluje ve VS)
 run:
 	python3 gui.py
@@ -35,12 +37,13 @@ profile:
 	echo "10 20 30 40 50" | python3 profiling.py 
 #help (vypíše nápovědu s popisem, co je potřeba udělat před spuštěním programu)
 help:
-	$(info Programme can be installed only on Linux Ubuntu distribution.)
-	$(info To install it, python3 need to be installed on your device.)
+	$(info 	Programme can be installed only on Linux Ubuntu distribution.)
+	$(info 	Before first run of the program run command "make all" in folder src)
 #test spusti testy matematicke knihovny
 test: LibMath_Tests.py
 	python3 LibMath_Tests.py
-
-# install
-# sudo apt-get install python3-tk
-# sudo apt-get install python3-pil python3-pil.imagetk
+#aktualizuje installer 	
+update-installer:
+	cp gui.py LibMath.py LibProcExpr.py ../installer/usr/share/gazorpazorp
+	cd ../installer
+	(cd ../installer; dpkg-deb --build ./ gapacalc_inst.deb)
