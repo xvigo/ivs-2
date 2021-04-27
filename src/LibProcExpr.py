@@ -35,7 +35,7 @@ def conv_to_num(num):
 ##
 # @brief Function that separates string containing mathematical expression into individual items
 #
-# @param n_str String that will be separatend
+# @param expression String that will be separated
 #
 # @return List containing expression items
 def parse_expr(expression):
@@ -66,7 +66,7 @@ def parse_expr(expression):
 ##
 # @brief Function that solves parsed mathematical expression and returns result
 #
-# @param n_str Mathematical expression to be solved (as a list of items)
+# @param expression Mathematical expression to be solved (as a list of items)
 #
 # @return Result of the expression
 def solve_expr(expression):

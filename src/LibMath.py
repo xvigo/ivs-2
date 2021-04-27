@@ -16,7 +16,9 @@
 # This math library contains basic mathematical function.
 #
 
+## number of digits to which the library rounds
 digits = 10
+
 ##
 # @brief Function to add two numbers
 #
