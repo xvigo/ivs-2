@@ -72,6 +72,13 @@ def parse_expr(expression):
 def solve_expr(expression):
     operators = [["!"], ["^", "√"], ["*", "/", "%"], ["+", "-"]]
     parsed_expr = parse_expr(expression)
+
+    if parsed_expr[0] == "+":
+        del parsed_expr[0]
+    elif parsed_expr[0] == "-":
+        parsed_expr[1] = - conv_to_num(parsed_expr[1])
+        del parsed_expr[0]
+
     for op_group in operators:
         i = 0
         while i < len(parsed_expr):
@@ -178,6 +185,8 @@ def solve_expr(expression):
                         del parsed_expr[i]
                         i -= 2
             i += 1
+    if len(parsed_expr) != 1:
+        raise ValueError("Error - expression in wrong format")
     return conv_to_num(parsed_expr[0])
 
 # End of file LibProcExpr.py

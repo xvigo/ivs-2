@@ -176,6 +176,11 @@ root.bind('<KP_Enter>', b_equal)
 # @param event Parameter that is required for keybinds, default value is None.
 #
 def b_delete(event=None):
+    global ans_displayed
+    if ans_displayed:
+        b_clear_empty()
+        return
+
     index = len(entry.get()) - 1
     entry.delete(index, tk.END)
     return
