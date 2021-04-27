@@ -21,14 +21,14 @@ pack: clean
 	mkdir ../../xbilek25_xmarek75_xgottw07/install
 	mkdir ../../xbilek25_xmarek75_xgottw07/doc
 	cp -a ../../ivs-2/. ../../xbilek25_xmarek75_xgottw07/repo/
-	#cp -a ../doc/. ../../xbilek25_xmarek75_xgottw07/doc/
+	cp ../dokumentace.pdf ../../xbilek25_xmarek75_xgottw07/doc/
 	cp -a ../installer/gapacalc_inst.deb ../../xbilek25_xmarek75_xgottw07/install/
 	cd ../.. && zip -r xbilek25_xmarek75_xgottw07.zip xbilek25_xmarek75_xgottw07
 	cd ../.. && rm -rf xbilek25_xmarek75_xgottw07
 	
 #clean (smaže všechny soubory, co nemají být odevzdány)
 clean:
-	#rm -r __pychache__
+	#rm -r __pycache__
 #run (spustí program - lze předpokládat, že jej před tím někdo manuálně zkompiluje ve VS)
 run:
 	python3 gui.py
@@ -45,5 +45,4 @@ test: LibMath_Tests.py
 #aktualizuje installer 	
 update-installer:
 	cp gui.py LibMath.py LibProcExpr.py ../installer/usr/share/gazorpazorp
-	cd ../installer
 	(cd ../installer; dpkg-deb --build ./ gapacalc_inst.deb)
