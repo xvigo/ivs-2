@@ -4,26 +4,39 @@
 # Project name: Gazorpazorp calculator
 # File: Makefile
 # Authors: Pavel Marek
-# Description: Makefile for idk
-# Date: 30. 3. 2020
+# Description: Makefile for GazorPazorp Calculator project
+# Date: 30. 3. 2021
+# Last Edit: 27. 04. 2021
 ###################################################################
 
 
-#all (spustí progam)
+#all (prelozit program)
 all:
 	python3 gui.py
 #pack (zabalí projekt tak, aby mohl být odevzdán)
-pack:
+pack: clean
+	mkdir -p ../../xbilek25_xmarek75_xgottw07/repo
+	mkdir ../../xbilek25_xmarek75_xgottw07/install
+	mkdir ../../xbilek25_xmarek75_xgottw07/doc
+	cp -a ../../ivs-2/. ../../xbilek25_xmarek75_xgottw07/repo/
+	#cp -a ../doc/. ../../xbilek25_xmarek75_xgottw07/doc/
+	cp -a ../installer/gapacalc_inst.deb ../../xbilek25_xmarek75_xgottw07/install/
+	cd ../.. && zip -r xbilek25_xmarek75_xgottw07.zip xbilek25_xmarek75_xgottw07
+	cd ../.. && rm -rf xbilek25_xmarek75_xgottw07
+	
 #clean (smaže všechny soubory, co nemají být odevzdány)
 clean:
+	
 #run (spustí program - lze předpokládat, že jej před tím někdo manuálně zkompiluje ve VS)
 run:
+	python3 gui.py
 #profile (spustí program pro výpočet směrodatné odchylky s ukázkovým testovacím vstupem)
 profile:
-	python3 profilling.py <"10 20 30 40" 
+	echo "10 20 30 40 50" | python3 profiling.py 
 #help (vypíše nápovědu s popisem, co je potřeba udělat před spuštěním programu)
 help:
-	$(info Program is ready to run)
+	$(info Programme can be installed only on Linux Ubuntu distribution.)
+	$(info To install it, python3 need to be installed on your device.)
 #test spusti testy matematicke knihovny
 test: LibMath_Tests.py
 	python3 LibMath_Tests.py
