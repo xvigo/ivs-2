@@ -1,6 +1,6 @@
 #!/bin/sh
 	
-	mkdir ../installer
+	mkdir -p ../installer
 	cd install
 	mkdir usr 
 	cd usr
