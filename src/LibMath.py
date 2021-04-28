@@ -30,10 +30,10 @@ def add(a, b):
     return round(a + b, digits)
 
 ##
-# @brief Function to substract one number from another.
+# @brief Function to subtract one number from another.
 #
-# @param a Minuend (number we substract from)
-# @param b Subtrahend (number we substract)
+# @param a Minuend (number we subtract from)
+# @param b Subtrahend (number we subtract)
 #
 # @return Difference of a and b
 def sub(a, b):
