@@ -3,7 +3,7 @@
 # Project name: Gazorpazorp calculator
 # File: gui.py
 # Last change: 28.4.2021
-# Authors: Vilem Gottwald, Pavel Marek
+# Authors: Stepan Bilek, Vilem Gottwald, Pavel Marek
 # Description: Gui for calculator
 ###################################################################
 
