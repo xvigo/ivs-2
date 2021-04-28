@@ -171,11 +171,17 @@ class TestPower(unittest.TestCase):
         self.assertEqual(LibMath.power(0, 15), 0)
         self.assertEqual(LibMath.power(0, 22), 0)
 
-    def test_power_exponent_is_not_natural_number(self):
+    def test_power_exponent_is_zero(self):
+        self.assertEqual(LibMath.power(5, 0), 1)
+        self.assertEqual(LibMath.power(2.5, 0), 1)
+        self.assertEqual(LibMath.power(-5, 0), 1)
+        self.assertEqual(LibMath.power(-2.5, 0), 1)
+
+    def test_power_base_and_exponent_are_zero(self):
         with self.assertRaises(ValueError):
             self.assertRaises(LibMath.power(0, 0))
-        with self.assertRaises(ValueError):
-            self.assertRaises(LibMath.power(5, 0))
+
+    def test_power_exponent_is_not_int_except_for_zero(self):
         with self.assertRaises(ValueError):
             self.assertRaises(LibMath.power(5, -2))
         with self.assertRaises(ValueError):
