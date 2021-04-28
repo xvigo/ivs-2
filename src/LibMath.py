@@ -9,7 +9,7 @@
 
 ##
 # @file LibMath.py
-#
+# @author Vilem Gottwald, Pavel Marek
 # @package gapalib
 # Gapalib is mathematical library for GazorPazorp calculator.
 #
@@ -20,7 +20,7 @@
 digits = 10
 
 ##
-# @brief Function to add two numbers
+# @brief Function to add two numbers.
 #
 # @param a First addend
 # @param b Second addend
@@ -30,7 +30,7 @@ def add(a, b):
     return round(a + b, digits)
 
 ##
-# @brief Function to substract one number from another
+# @brief Function to substract one number from another.
 #
 # @param a Minuend (number we substract from)
 # @param b Subtrahend (number we substract)
@@ -40,7 +40,7 @@ def sub(a, b):
     return round(a - b, digits)
 
 ##
-# @brief Function to multiply two numbers
+# @brief Function to multiply two numbers.
 #
 # @param a First factor
 # @param b Second factor
@@ -50,10 +50,12 @@ def mul(a, b):
     return round(a * b, digits)
 
 ##
-# @brief Function to divide two numbers
+# @brief Function to divide two numbers.
 #
 # @param a Dividend
 # @param b Divisor
+#
+# @exception ZeroDivisionError if Divisor is zero
 #
 # @return Quotient of a and b
 def div(a, b):
@@ -62,11 +64,14 @@ def div(a, b):
     return round(a / b, digits)
 
 ##
-# @brief Function to compute the remainder of a division,
-#           both operands have to be integers
+# @brief Function to compute the remainder of a division.
+# Both operands have to be integers.
 #
 # @param a Dividend
 # @param b Divisor
+#
+# @exception ZeroDivisionError if Divisor is zero
+# @exception ValueError if operands aren't integers
 #
 # @return Remainder of a and b division
 def mod(a, b):
@@ -77,9 +82,11 @@ def mod(a, b):
     return round(a % b, digits)
 
 ##
-# @brief Function to compute factorial
+# @brief Function to compute factorial.
 #
 # @param a Number, factorial will be computed from
+#
+# @exception ValueError if Number isn't positive integer
 #
 # @return Factorial of given number
 def fact(a):
@@ -100,6 +107,8 @@ def fact(a):
 # @param a Base
 # @param exp Exponent
 #
+# @exception ValueError if Exponent isn't a natural number
+#
 # @return Result of the exponentiation
 def power(a, exp):
     if not isinstance(exp, int) or exp < 0:
@@ -113,12 +122,15 @@ def power(a, exp):
 # @param a Radicand
 # @param deg Degree
 #
+# @exception ValueError if degree is zero
+# @exception ValueError if radicant negative and degree even
+#
 # @return Result of the root
 def root(a, deg):
     if deg % 2 == 0 and a < 0:
         raise ValueError("Root error - even degree of a negative radicant")
     if deg == 0:
-        raise ValueError("Root error - degree has to be greater than 0")
+        raise ValueError("Root error - degree can't be zero")
 
     negate = False
     if a < 0 and deg % 2 == 1:
