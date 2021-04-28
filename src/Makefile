@@ -51,9 +51,8 @@ help:
 test: LibMath_Tests.py
 	python3 $<
 #aktualizuje installer 	
-update-installer:
-	cp gui.py LibMath.py LibProcExpr.py ../installer/usr/share/gazorpazorp
-	(cd ../installer; dpkg-deb --build ./ gapacalc_inst.deb)
+installer:
+	./cr_inst.sh
 #vygeneruje doxygen dokumentaci
 doc: Doxyfile
 	doxygen $<
