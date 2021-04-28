@@ -125,7 +125,7 @@ def b_num(new):
 ##
 # @brief Adds operator into the calculator entry field.
 # This function is called whenever operator button is pressed.
-# If current content of entry is a result of previous calclation, entry is first erased.
+# If current content of entry is a result of previous calculation, entry is first erased.
 #
 # @param new character that will be inserted into the entry field
 #
@@ -187,7 +187,7 @@ root.bind('<Return>', b_equal)
 root.bind('<KP_Enter>', b_equal)
 
 ##
-# @brief Delets last character of the entry.
+# @brief Deletes last character of the entry.
 # This function is called whenever DEL button is pressed.
 #
 # @param event Parameter that is required for keybinds, default value is None.
