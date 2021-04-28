@@ -1,6 +1,6 @@
 from LibMath import *
 import sys
-import cProfile
+
 
 def mean(data):
     return float(div(sum(data), len(data)))
@@ -23,4 +23,3 @@ x = stddev(data)
 
 print(x)
 
-cProfile.run('stddev(data)')
