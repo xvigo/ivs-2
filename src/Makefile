@@ -16,7 +16,7 @@ all:
 	sudo apt-get install python3-tk
 	sudo apt-get install python3-pil python3-pil.imagetk
 #pack (zabalí projekt tak, aby mohl být odevzdán)
-pack: doc update-installer folder clean
+pack: doc update-installer folder clean zip
 
 #vytvori slozky install,repo, doc
 folder:
@@ -24,15 +24,16 @@ folder:
 	mkdir ../../xbilek25_xmarek75_xgottw07/install
 	mkdir ../../xbilek25_xmarek75_xgottw07/doc
 	cp -a ../../ivs-2/. ../../xbilek25_xmarek75_xgottw07/repo/
-	cp ../dokumentace.pdf ../../xbilek25_xmarek75_xgottw07/doc/
+	cp -a ../documentation/html ../../xbilek25_xmarek75_xgottw07/doc/
 	cp -a ../installer/. ../../xbilek25_xmarek75_xgottw07/install/
-	cd ../../xbilek25_xmarek75_xgottw07/repo && rm -rf installer
-	cd ../.. && zip -r xbilek25_xmarek75_xgottw07.zip xbilek25_xmarek75_xgottw07
-	cd ../.. && rm -rf xbilek25_xmarek75_xgottw07	
 	
 #clean (smaže všechny soubory, co nemají být odevzdány)
 clean:
-	#cd .. && rm -rf installer
+	cd ../../xbilek25_xmarek75_xgottw07/repo && rm -rf installer
+	cd ../../xbilek25_xmarek75_xgottw07/repo && rm -rf documentation
+zip:
+	cd ../.. && zip -r xbilek25_xmarek75_xgottw07.zip xbilek25_xmarek75_xgottw07
+	cd ../.. && rm -rf xbilek25_xmarek75_xgottw07	
 
 #run (spustí program - lze předpokládat, že jej před tím někdo manuálně zkompiluje ve VS)
 run:
