@@ -18,7 +18,7 @@ all:
 	sudo apt-get install python3-tk
 	sudo apt-get install python3-pil python3-pil.imagetk
 #pack (zabalí projekt tak, aby mohl být odevzdán)
-pack: doc update-installer folder clean zip
+pack: doc installer folder clean zip
 
 #vytvori slozky install,repo, doc
 folder:
@@ -33,6 +33,7 @@ folder:
 clean:
 	cd ../../$(NAME)/repo && rm -rf installer
 	cd ../../$(NAME)/repo && rm -rf documentation
+	cd ../../$(NAME)/repo/src && rm -rf __pycache__
 zip:
 	cd ../.. && zip -r $(NAME).zip $(NAME)
 	cd ../.. && rm -rf $(NAME)	
