@@ -9,8 +9,10 @@
 # Last Edit: 28. 04. 2021
 ###################################################################
 
+NAME=xbilek25_xmarek75_xgottw07
 
-#all (prelozit program)
+
+#all (nainstaluje potrebne programy ke spusteni programu)
 all:
 	sudo apt-get install python3
 	sudo apt-get install python3-tk
@@ -20,20 +22,20 @@ pack: doc update-installer folder clean zip
 
 #vytvori slozky install,repo, doc
 folder:
-	mkdir -p ../../xbilek25_xmarek75_xgottw07/repo
-	mkdir ../../xbilek25_xmarek75_xgottw07/install
-	mkdir ../../xbilek25_xmarek75_xgottw07/doc
-	cp -a ../../ivs-2/. ../../xbilek25_xmarek75_xgottw07/repo/
-	cp -a ../documentation/html ../../xbilek25_xmarek75_xgottw07/doc/
-	cp -a ../installer/. ../../xbilek25_xmarek75_xgottw07/install/
+	mkdir -p ../../$(NAME)/repo
+	mkdir ../../$(NAME)/install
+	mkdir ../../$(NAME)/doc
+	cp -a ../../ivs-2/. ../../$(NAME)/repo/
+	cp -a ../documentation/html ../../$(NAME)/doc/
+	cp -a ../installer/. ../../$(NAME)/install/
 	
 #clean (smaže všechny soubory, co nemají být odevzdány)
 clean:
-	cd ../../xbilek25_xmarek75_xgottw07/repo && rm -rf installer
-	cd ../../xbilek25_xmarek75_xgottw07/repo && rm -rf documentation
+	cd ../../$(NAME)/repo && rm -rf installer
+	cd ../../$(NAME)/repo && rm -rf documentation
 zip:
-	cd ../.. && zip -r xbilek25_xmarek75_xgottw07.zip xbilek25_xmarek75_xgottw07
-	cd ../.. && rm -rf xbilek25_xmarek75_xgottw07	
+	cd ../.. && zip -r $(NAME).zip $(NAME)
+	cd ../.. && rm -rf $(NAME)	
 
 #run (spustí program - lze předpokládat, že jej před tím někdo manuálně zkompiluje ve VS)
 run:
@@ -47,7 +49,7 @@ help:
 	$(info 	Before first run of the program run command "make all" in folder src)
 #test spusti testy matematicke knihovny
 test: LibMath_Tests.py
-	python3 LibMath_Tests.py
+	python3 $<
 #aktualizuje installer 	
 update-installer:
 	cp gui.py LibMath.py LibProcExpr.py ../installer/usr/share/gazorpazorp
