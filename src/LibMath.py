@@ -108,12 +108,14 @@ def fact(a):
 # @param exp Exponent
 #
 # @exception ValueError if Exponent isn't a natural number
+# @exception ValueError if Exponent and Base are zeros
 #
 # @return Result of the exponentiation
 def power(a, exp):
     if not isinstance(exp, int) or exp < 0:
         raise ValueError("Power error - exponent is not a natural number")
-
+    if a == 0 and exp == 0:
+        raise ValueError("Power error - zero raised to zero ins't defined")
     return round(a**exp, digits)
 
 ##
