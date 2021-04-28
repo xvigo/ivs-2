@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 ###################################################################
 # Project name: Gazorpazorp calculator
-# File: LibMath.py
+# File: gui.py
+# Last change: 28.4.2021
 # Authors: Vilem Gottwald, Pavel Marek
-# Description: Library implementing basic mathematical operations
+# Description: Gui for calculator
 ###################################################################
 
 ##
 # @file gui.py
 #
+# @brief GUI for calculator, uses functions from LibProcExpr.py and LibMath.py
 #
+# @author Stepan Bilek, Vilem Gottwald, Pavel Marek
 #
 
 
@@ -20,7 +23,7 @@ from tkinter import font as tkFont
 import LibProcExpr as pe
 
 
-## colors initialization
+# colors initialization
 button_color = "#424242"
 hbgc = "#303030"          #highlight background color
 active_color = "#323232"  #under cursor color
@@ -34,16 +37,16 @@ root.title("Gazorpazorpcalc")
 root.configure(bg = hbgc)
 root.resizable(0, 0)
 
-## getting path to calculator logo
+# getting path to calculator logo
 path = os.path.realpath(__file__).rsplit('/', 1)
 logo_location = path[0] + "/logo.png"
 
-## fonts initialization
+# fonts initialization
 button_font = tkFont.Font(family = 'Helvetica', size = 22, weight = 'bold')
 help_font = tkFont.Font(family = 'Helvetica', size = 15)
 help_text_f = tkFont.Font(family = 'Helvetica', size = 15)
 
-## adding logo
+# adding logo
 image = Image.open(logo_location)
 image = image.resize((110, 110))
 photo = ImageTk.PhotoImage(image)
@@ -53,7 +56,7 @@ logo.image = photo
 logo.grid(row = 1, column = 0, rowspan = 2)
 
 
-## label to display calculator history
+# label to display calculator history
 ans_str = tk.StringVar()
 history = tk.Label(root, textvariable=ans_str, anchor=tk.W, justify = tk.LEFT, width = 26, bg = hbgc, bd = 0, highlightbackground = hbgc, font = ('Helvetica', 20))
 
@@ -85,7 +88,7 @@ def validCheck(action, char):
     return True
 
 
-## Entry screen to display current input
+# Entry screen to display current input
 VC = root.register(validCheck)
 entry = tk.Entry(root, justify = tk.RIGHT, validate='key', validatecommand=(VC, '%d', '%S'), width = 15, bg = "#404040", bd = 0, highlightbackground = hbgc, font = ('Helvetica', 35))
 entry.focus_set()
@@ -98,8 +101,8 @@ glob_result = ""
 
 
 ##
-# @brief adds number into the  calculator entry field,
-# this function is called whenever number or decimal point button is pressed
+# @brief Adds number into the  calculator entry field.
+# This function is called whenever number or decimal point button is pressed.
 # if current content of entry is a result of calclation, the result is first deleted
 #
 # @param new character that will be inserted into the entry field
@@ -179,7 +182,7 @@ def b_equal(event=None):
     ans_displayed = True
     return
 
-## binding corresponding keys to equals button
+# binding corresponding keys to equals button
 root.bind('<Return>', b_equal)
 root.bind('<KP_Enter>', b_equal)
 
@@ -210,7 +213,7 @@ def b_clear_empty(event=None):
     ans_str.set("")
     return
 
-## binding corresponding keys to AC button
+# binding corresponding keys to AC button
 root.bind('e',b_clear_empty)
 
 ##
@@ -282,13 +285,13 @@ def keyb_root(event=None):
     b_num("√")
     return
 
-## binding corresponding keys to square root button
+# binding corresponding keys to square root button
 root.bind('r',keyb_root)
 
-## creating help button in the top bar
+# creating help button in the top bar
 button_help = tk.Button(root, text = "Help", font = help_font, bd = 0, activebackground = active_color, highlightbackground = hbgc, bg = hbgc, padx = padx_size, pady = pady_size, height = 1, width = 2,  command = lambda: show_help())
 
-## number buttons
+# number buttons
 button_1 = tk.Button(root, text = "1", font = button_font, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(1))
 button_2 = tk.Button(root, text = "2", font = button_font, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(2))
 button_3 = tk.Button(root, text = "3", font = button_font, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num(3))
@@ -301,7 +304,7 @@ button_9 = tk.Button(root, text = "9", font = button_font, activebackground = ac
 button_0 = tk.Button(root, text = "0", font = button_font, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = 70, pady = 8, height = 2, width = 8, command = lambda: b_num(0))
 button_point = tk.Button(root, text = ".", font = button_font, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_num("."))
 
-## operators buttons
+# operators buttons
 button_plus = tk.Button(root, text = "+", font = button_font, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("+"))
 button_minus = tk.Button(root, text = "-", font = button_font, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("-"))
 button_times = tk.Button(root, text = "*", font = button_font, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("*"))
@@ -315,7 +318,7 @@ button_ac = tk.Button(root, text = "AC", font = button_font, activebackground = 
 button_mod = tk.Button(root, text = "MOD", font = button_font, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("%"))
 button_fact = tk.Button(root, text = "!", font = button_font, activebackground = active_color, bd = 0, highlightbackground = hbgc, bg = button_color, padx = padx_size, pady = pady_size, height = 2, width = 5, command = lambda: b_operator("!"))
 
-## griding elements to the root window
+# griding elements to the root window
 button_help.grid(row = 0, column = 0, sticky = tk.W)
 
 history.grid(row = 1, column = 1, columnspan = 5, sticky = tk.S)

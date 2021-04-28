@@ -6,7 +6,7 @@
 # Authors: Pavel Marek
 # Description: Makefile for GazorPazorp Calculator project
 # Date: 30. 3. 2021
-# Last Edit: 27. 04. 2021
+# Last Edit: 28. 04. 2021
 ###################################################################
 
 
@@ -52,4 +52,6 @@ update-installer:
 	cp gui.py LibMath.py LibProcExpr.py ../installer/usr/share/gazorpazorp
 	(cd ../installer; dpkg-deb --build ./ gapacalc_inst.deb)
 #vygeneruje doxygen dokumentaci
-doc:
+doc: Doxyfile
+	doxygen $<
+	

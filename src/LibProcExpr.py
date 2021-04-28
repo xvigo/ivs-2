@@ -2,7 +2,7 @@
 ###################################################################
 # Project name: Gazorpazorp calculator
 # File: LibProcExpr.py
-# Authors: Vilem Gottwald, Stepan Bilek
+# Authors: Vilem Gottwald
 # Description: Library for processing mathematical expression, given by GUI
 #              this library uses mathematical functions from LibMath
 ###################################################################
@@ -11,8 +11,11 @@ import LibMath as math
 
 ##
 # @file LibProcExpr.py
-# Library for processing mathematical expression, given by GUI
-# This library uses functions from LibMath library to solve mathematical expression given as string
+#
+# @author Vilem Gottwald
+#
+# @brief Library for processing mathematical expression, given by GUI
+# This library uses functions from LibMath library to solve mathematical expression given as a string.
 #
 
 ##
