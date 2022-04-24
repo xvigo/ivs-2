@@ -1,5 +1,5 @@
 # IVS project 2
-##Description 
+## Description 
 Simple Python and Tkinter calculator
 ## Platform
 Ubuntu 20.04 - 64bit
